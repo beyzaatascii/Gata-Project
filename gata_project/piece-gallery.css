@@ -1,34 +1,17 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #fafafa;
-  font-family: 'Montserrat', sans-serif;
 }
 
-.slider-container {
-  margin-top: 0;
+html {
+  font-size: 16px; /* 1rem = 16px */
 }
 
-html,
 body {
-  width: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fafafa;
   overflow-x: hidden;
-}
-
-.slider-container,
-.slides,
-.slide {
-  max-width: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-.logo-header,
-.dropdown-menu,
-.slider-container {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%;
 }
 
 
@@ -151,38 +134,67 @@ body {
   }
 }
 
-.slider-container {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-  margin-top: 5rem;
-  padding: 0 1rem;
-  /* YANDAN BOŞLUK burası */
-  box-sizing: border-box;
+.gallery-section {
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
 }
 
-.slides {
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
   width: 100%;
-  height: 100%;
-  position: relative;
+  justify-items: center;
 }
 
-.slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  left: 0;
-  top: 0;
+.gallery-item {
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  transition: transform 0.3s;
 }
 
-.slide.active {
-  opacity: 1;
-  z-index: 2;
+.gallery-item:hover {
+  transform: scale(1.03);
 }
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item p {
+  margin-top: 0.8rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Mobil (1 kolon) */
+@media (max-width: 575.98px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet (2 kolon) */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Büyük ekran (4 kolon) */
+@media (min-width: 992px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 
 /*Footer*/
 .footer {
@@ -190,8 +202,9 @@ body {
   padding: 0.8rem 3rem;
   text-align: center;
   border-top: 1px solid ;
-  margin-top: 3rem;
+  margin-top: 1rem;
   border-style: none;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .footer-container {
@@ -203,7 +216,7 @@ body {
 
 .footer-info p {
   font-size: 0.875rem;
-  color: #333;
+  color: #000000;
   margin: 0;
 }
 
@@ -214,7 +227,7 @@ body {
 
 .footer-links a {
   font-size: 0.875rem;
-  color: #333;
+  color: #000000;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -226,7 +239,7 @@ body {
 .footer-links i {
   margin-right: 0.5rem;
   font-size: 1rem;
-  color: #333;
+  color: #000000;
   transition: color 0.3s ease;
 }
 

@@ -4,18 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pieces | GATA DESIGN</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="icon" type="image/png" href="favicon.png" sizes="48x48">
-  <link rel="stylesheet" href="pieces.css" />
-
+  <title>Product Details | GATA DESIGN</title>
+  <link rel="stylesheet" href="product.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 
 <body>
-
   <!-- LOGO + MENU -->
   <header class="logo-header">
     <a href="index.html">
@@ -23,7 +20,6 @@
     </a>
     <div class="menu-icon" onclick="toggleMenu()">
       <i class="fas fa-bars"></i>
-      <!-- <span>MENU</span>-->
     </div>
     <div class="dropdown-menu" id="dropdownMenu">
       <a href="pieces.html">PIECES</a>
@@ -33,24 +29,21 @@
     </div>
   </header>
 
-  <div class="wrapper">
-    <div class="grid-container">
-      <a href="furniture.html" class="grid-item">
-        <img src="images/furniture.jpg" alt="Furniture">
-        <p>FURNITURE</p>
-      </a>
-      <a href="artwork.html" class="grid-item">
-        <img src="images/artwork.jpg" alt="Artwork">
-        <p>ARTWORK</p>
-      </a>
-      <a href="lighting.html" class="grid-item">
-        <img src="images/lighting.jpg" alt="Lighting">
-        <p>LIGHTING</p>
-      </a>
+  <!-- PRODUCT -->
+  <div class="product-container">
+    <div class="image-slider-wrapper">
+      <button id="prev" class="arrow">&#10094;</button>
+      <div class="image-slider"></div>
+      <button id="next" class="arrow">&#10095;</button>
+    </div>
+
+    <div class="product-info">
+      <h2 id="product-title">Loading...</h2>
+      <p id="product-description"></p>
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-info">
@@ -60,16 +53,32 @@
       <div class="footer-links">
         <a href="https://wa.me/905333891103" target="_blank">
           <i class="fab fa-whatsapp"></i> WhatsApp</a>
-        <a href="https://www.instagram.com/gata_design" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://www.linkedin.com/in/g%C3%BClperi-arslan-ta%C5%9Fci-034000164?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-          target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+        <a href="https://www.instagram.com/gata_design" target="_blank">
+          <i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.linkedin.com/in/g%C3%BClperi-arslan-ta%C5%9Fci-034000164" target="_blank">
+          <i class="fab fa-linkedin-in"></i> LinkedIn</a>
         <a href="mailto:example@email.com"><i class="fas fa-envelope"></i> Email</a>
       </div>
     </div>
   </footer>
+  
+  <!-- LIGHTBOX TAM EKRAN GÖRSEL -->
+  <div id="lightbox" class="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">×</span>
+    <img id="lightbox-img" src="" alt="Full image">
+  </div>
 
-  <script src="script.js"></script>
-</body>
+
+  <!-- Scripts -->
+  <script>
+    // Menü aç/kapa
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.classList.toggle("show");
+    }
+  </script>
+  <script src="data.js"></script>
+  <script src="product.js"></script>
 </body>
 
 </html>

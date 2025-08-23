@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #fafafa;
-  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
 }
 
 .slider-container {
@@ -13,6 +13,7 @@ html,
 body {
   width: 100%;
   overflow-x: hidden;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .slider-container,
@@ -126,6 +127,19 @@ body {
 }
 
 /* TABLET: 2x2 */
+@media (min-width: 992px) {
+  .dropdown-menu {
+    flex-wrap: nowrap;
+    /* Satır kırılmasını engeller */
+    gap: 6rem;
+  }
+
+  .dropdown-menu a {
+    flex: 0 0 auto;
+  }
+}
+
+/* TABLET: 2x2 */
 @media (min-width: 576px) and (max-width: 768px) {
   .dropdown-menu {
     flex-wrap: wrap;
@@ -151,38 +165,96 @@ body {
   }
 }
 
-.slider-container {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-  margin-top: 5rem;
-  padding: 0 1rem;
-  /* YANDAN BOŞLUK burası */
-  box-sizing: border-box;
+
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  gap: 2rem;
+  padding: 3rem 1rem;
 }
 
-.slides {
-  width: 100%;
-  height: 100%;
-  position: relative;
+.grid-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: nowrap;
 }
 
-.slide {
-  position: absolute;
+.grid-item {
+  text-align: center;
+  text-decoration: none;
+  color: #000000;
+  transition: transform 0.3s;
+  width: 280px; /* Sabit genişlik */
+}
+
+.grid-item img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  border-radius: 12px;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  left: 0;
-  top: 0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-.slide.active {
-  opacity: 1;
-  z-index: 2;
+.grid-item p {
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 1px;
 }
+
+.grid-item:hover {
+  transform: scale(1.03);
+}
+@media screen and (min-width: 992px) {
+  .logo-header {
+    margin-bottom: -5rem; /* Menü altındaki boşluk azaltıldı */
+  }
+
+  .wrapper {
+    margin-top: 0; /* Üst boşluk minimumda */
+  }
+
+  .grid-container {
+    gap: 2rem; /* Resimler arası boşluk azaltıldı */
+    padding-top: 1rem;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px)  {
+  .logo-header {
+    margin-bottom: 1rem; /* Menü altındaki boşluk azaltıldı */
+  }
+
+  .wrapper {
+    margin-top: 0; /* Üst boşluk minimumda */
+  }
+
+  .grid-container {
+    gap: 2rem; /* Resimler arası boşluk azaltıldı */
+    padding-top: 1rem;
+  }
+}
+
+
+/* Mobil için */
+@media (max-width: 900px) {
+  .grid-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .grid-item {
+    width: 90%;
+    max-width: 320px;
+  }
+}
+
 
 /*Footer*/
 .footer {
@@ -203,7 +275,7 @@ body {
 
 .footer-info p {
   font-size: 0.875rem;
-  color: #333;
+  color: #000000;
   margin: 0;
 }
 
@@ -214,7 +286,7 @@ body {
 
 .footer-links a {
   font-size: 0.875rem;
-  color: #333;
+  color: #000000;
   text-decoration: none;
   transition: color 0.3s ease;
 }
