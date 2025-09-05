@@ -31,7 +31,6 @@ body {
   max-width: 100%;
 }
 
-
 /* LOGO + MENU ICON YAPISI */
 .logo-header {
   padding: 1.5rem 0;
@@ -84,7 +83,6 @@ body {
   gap: 3.5rem;
   margin-top: 5rem;
   margin-bottom: -5rem;
-  /* slider’la arasına boşluk ekledik */
   text-align: center;
 }
 
@@ -92,7 +90,6 @@ body {
   display: flex;
 }
 
-/* Menü linkleri */
 .dropdown-menu a {
   text-decoration: none;
   color: #333;
@@ -104,19 +101,13 @@ body {
 
 .dropdown-menu a:hover {
   color: #999;
-  /* veya #555 ya da pastel bir ton */
   transform: translateX(2px);
-  /* hafif sağa kayar */
 }
 
-
 /* --- EKRAN BOYUTUNA GÖRE DÜZENLEME --- */
-
-/* MASAÜSTÜ: 4lü düzgün */
 @media (min-width: 992px) {
   .dropdown-menu {
     flex-wrap: nowrap;
-    /* Satır kırılmasını engeller */
     gap: 6rem;
   }
 
@@ -125,7 +116,6 @@ body {
   }
 }
 
-/* TABLET: 2x2 */
 @media (min-width: 576px) and (max-width: 768px) {
   .dropdown-menu {
     flex-wrap: wrap;
@@ -138,7 +128,6 @@ body {
   }
 }
 
-/* MOBİL: Alt alta */
 @media (max-width: 576px) {
   .dropdown-menu {
     flex-direction: column;
@@ -151,14 +140,14 @@ body {
   }
 }
 
+/* === SLIDER BÖLÜMÜ === */
 .slider-container {
   width: 100%;
-  height: 100vh;
+  height: 90vh; /* masaüstünde geniş görünsün */
   position: relative;
   overflow: hidden;
   margin-top: 5rem;
-  padding: 0 1rem;
-  /* YANDAN BOŞLUK burası */
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -170,13 +159,14 @@ body {
 
 .slide {
   position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
+  object-position: center center;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
-  left: 0;
-  top: 0;
+  transition: opacity 0.8s ease-in-out;
 }
 
 .slide.active {
@@ -184,12 +174,31 @@ body {
   z-index: 2;
 }
 
-/*Footer*/
+/* Tablet için daha az yüksek */
+@media (max-width: 992px) {
+  .slider-container {
+    height: 70vh;
+  }
+}
+
+/* Mobil için daha da küçült */
+@media (max-width: 576px) {
+  .slider-container {
+    height: 50vh;   /* telefonlarda fazla yer kaplamaz */
+    margin-top: 3.5rem;
+  }
+  .slide {
+    object-fit: contain;
+    background-color: #fafafa;
+  }
+}
+
+/* Footer */
 .footer {
   background-color: #fafafa;
   padding: 0.8rem 3rem;
   text-align: center;
-  border-top: 1px solid ;
+  border-top: 1px solid;
   margin-top: 3rem;
   border-style: none;
 }
@@ -232,4 +241,28 @@ body {
 
 .footer-links a:hover i {
   color: #999;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.slider-dots .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.slider-dots .dot.active {
+  background-color: #333;
+  transform: scale(1.2);
 }
