@@ -7,6 +7,7 @@
     <title>Aydınlatmalar | GATA DESIGN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="icon" type="image/png" href="favicon.png" sizes="48x48">
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="piece-gallery.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,21 +18,7 @@
 <body>
 
     <!-- LOGO + MENU -->
-    <header class="logo-header">
-        <a href="index.html">
-            <img src="images/logo.png" alt="Logo" class="header-logo" />
-        </a>
-        <div class="menu-icon" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-            <!-- <span>MENU</span>-->
-        </div>
-        <div class="dropdown-menu" id="dropdownMenu">
-      <a href="pieces.html">ÜRÜNLER</a>
-      <a href="project.html">PROJELER</a>
-      <a href="about.html">HAKKIMIZDA</a>
-      <a href="contact.html">İLETİŞİM</a>
-    </div>
-    </header>
+    <div id="navbar-container"></div>
 
     <section class="gallery-section">
         <div class="gallery-grid">
@@ -67,25 +54,9 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-info">
-                <p>&copy; 2025 GATA DESIGN</p>
-                <p>Interior | Product</p>
-            </div>
-            <div class="footer-links">
-                <a href="https://wa.me/905333891103" target="_blank">
-                    <i class="fab fa-whatsapp"></i> WhatsApp</a>
-                <a href="https://www.instagram.com/gata_design" target="_blank"><i class="fab fa-instagram"></i>
-                    Instagram</a>
-                <a href="https://www.linkedin.com/in/g%C3%BClperi-arslan-ta%C5%9Fci-034000164?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                    target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-                <a href="mailto:example@email.com"><i class="fas fa-envelope"></i> Email</a>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-container"></div>
 
-    <script src="script.js"></script>
+    <script src="include.js"></script>
 </body>
 
 

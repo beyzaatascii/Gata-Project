@@ -5,30 +5,10 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-.slider-container {
-  margin-top: 0;
-}
-
 html,
 body {
   width: 100%;
   overflow-x: hidden;
-}
-
-.slider-container,
-.slides,
-.slide {
-  max-width: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-.logo-header,
-.dropdown-menu,
-.slider-container {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%;
 }
 
 /* LOGO + MENU ICON YAPISI */
@@ -140,59 +120,6 @@ body {
   }
 }
 
-/* === SLIDER BÖLÜMÜ === */
-.slider-container {
-  width: 100%;
-  height: 90vh; /* masaüstünde geniş görünsün */
-  position: relative;
-  overflow: hidden;
-  margin-top: 5rem;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.slides {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center center;
-  opacity: 0;
-  transition: opacity 0.8s ease-in-out;
-}
-
-.slide.active {
-  opacity: 1;
-  z-index: 2;
-}
-
-/* Tablet için daha az yüksek */
-@media (max-width: 992px) {
-  .slider-container {
-    height: 70vh;
-  }
-}
-
-/* Mobil için daha da küçült */
-@media (max-width: 576px) {
-  .slider-container {
-    height: 50vh;   /* telefonlarda fazla yer kaplamaz */
-    margin-top: 3.5rem;
-  }
-  .slide {
-    object-fit: contain;
-    background-color: #fafafa;
-  }
-}
-
 /* Footer */
 .footer {
   background-color: #fafafa;
@@ -243,26 +170,4 @@ body {
   color: #999;
 }
 
-.slider-dots {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 3;
-}
 
-.slider-dots .dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.6);
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.slider-dots .dot.active {
-  background-color: #333;
-  transform: scale(1.2);
-}

@@ -1,9 +1,9 @@
 let slideIndex = 0;
+let autoSlideTimeout;
 const slides = document.querySelectorAll(".slide");
 const dotsContainer = document.getElementById("sliderDots");
-let autoSlideTimeout; // zamanlayıcıyı tutmak için
 
-// Dotları oluştur
+// Dinamik dot oluşturma
 slides.forEach((_, index) => {
   const dot = document.createElement("div");
   dot.classList.add("dot");
@@ -14,10 +14,9 @@ slides.forEach((_, index) => {
 
 const dots = document.querySelectorAll(".dot");
 
-function showSlide(nextIndex = null) {
-  // Eğer parametre varsa (tıklama ile) onu kullan
-  if (nextIndex !== null) {
-    slideIndex = nextIndex;
+function showSlide(index = null) {
+  if (index !== null) {
+    slideIndex = index;
   } else {
     slideIndex = (slideIndex + 1) % slides.length;
   }
@@ -37,24 +36,24 @@ function goToSlide(index) {
   showSlide(index);
 }
 
-// Otomatik kaydırmayı başlat
+function nextSlide() {
+  showSlide((slideIndex + 1) % slides.length);
+}
+
+function prevSlide() {
+  showSlide((slideIndex - 1 + slides.length) % slides.length);
+}
+
 function startAutoSlide() {
   autoSlideTimeout = setTimeout(() => {
-    showSlide(); // sıradaki slayta geç
+    showSlide();
   }, 4000);
 }
 
-// Otomatik kaydırmayı sıfırla
 function resetAutoSlide() {
   clearTimeout(autoSlideTimeout);
   startAutoSlide();
 }
 
-// Başlangıçta çalıştır
+// Başlangıç
 startAutoSlide();
-
-// Menü toggle
-function toggleMenu() {
-  const menu = document.getElementById('dropdownMenu');
-  menu.classList.toggle('show');
-}

@@ -1,0 +1,109 @@
+.slider-container {
+  margin-top: 5rem;
+  width: 100%;
+  max-width: 100%;
+  height: 90vh; /* masaüstü için */
+  position: relative;
+  overflow: hidden;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slides {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Tablet için daha az yüksek */
+@media (max-width: 992px) {
+  .slider-container {
+    height: 70vh;
+  }
+}
+
+/* Mobil için daha da küçült */
+@media (max-width: 576px) {
+  .slider-container {
+    height: 50vh;
+    margin-top: 3.5rem;
+  }
+
+  .slide {
+    object-fit: contain;
+    background-color: #fafafa;
+  }
+}
+
+/* Dotlar */
+.slider-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.slider-dots .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.slider-dots .dot.active {
+  background-color: #333;
+  transform: scale(1.2);
+}
+
+
+/* Ok tuşları */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.2rem;
+  color: rgba(0, 0, 0, 0.5);  /* Hafif transparan siyah */
+  background: none;           /* Arka plan tamamen kaldırıldı */
+  border: none;               /* Kenarlık yok */
+  padding: 0;                 /* Fazla boşluk sıfırlandı */
+  cursor: pointer;
+  z-index: 4;
+  transition: color 0.2s ease;
+}
+
+.slider-arrow:hover {
+  color: #000; /* Üzerine gelince daha koyu */
+}
+
+.slider-arrow.left {
+  left: 15px;
+}
+
+.slider-arrow.right {
+  right: 15px;
+}

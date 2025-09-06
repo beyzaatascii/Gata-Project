@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ürün Detayları | GATA DESIGN</title>
+  <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="product.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,20 +15,7 @@
 
 <body>
   <!-- LOGO + MENU -->
-  <header class="logo-header">
-    <a href="index.html">
-      <img src="images/logo.png" alt="Logo" class="header-logo" />
-    </a>
-    <div class="menu-icon" onclick="toggleMenu()">
-      <i class="fas fa-bars"></i>
-    </div>
-    <div class="dropdown-menu" id="dropdownMenu">
-      <a href="pieces.html">ÜRÜNLER</a>
-      <a href="project.html">PROJELER</a>
-      <a href="about.html">HAKKIMIZDA</a>
-      <a href="contact.html">İLETİŞİM</a>
-    </div>
-  </header>
+  <div id="navbar-container"></div>
 
   <!-- PRODUCT -->
   <div class="product-container">
@@ -44,23 +32,7 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-info">
-        <p>&copy; 2025 GATA DESIGN</p>
-        <p>Interior | Product</p>
-      </div>
-      <div class="footer-links">
-        <a href="https://wa.me/905333891103" target="_blank">
-          <i class="fab fa-whatsapp"></i> WhatsApp</a>
-        <a href="https://www.instagram.com/gata_design" target="_blank">
-          <i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://www.linkedin.com/in/g%C3%BClperi-arslan-ta%C5%9Fci-034000164" target="_blank">
-          <i class="fab fa-linkedin-in"></i> LinkedIn</a>
-        <a href="mailto:example@email.com"><i class="fas fa-envelope"></i> Email</a>
-      </div>
-    </div>
-  </footer>
+  <div id="footer-container"></div>
   
   <!-- LIGHTBOX TAM EKRAN GÖRSEL -->
   <div id="lightbox" class="lightbox">
@@ -68,17 +40,9 @@
     <img id="lightbox-img" src="" alt="Full image">
   </div>
 
-
-  <!-- Scripts -->
-  <script>
-    // Menü aç/kapa
-    function toggleMenu() {
-      const menu = document.getElementById("dropdownMenu");
-      menu.classList.toggle("show");
-    }
-  </script>
   <script src="data.js"></script>
   <script src="product.js"></script>
+  <script src="include.js"></script>
 </body>
 
 </html>
