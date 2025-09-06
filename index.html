@@ -23,6 +23,11 @@
 
   <!-- Slider -->
   <section class="slider-container">
+
+    <!-- Arrow -->
+    <div class="slider-arrow left" onclick="prevSlide()">&#10094;</div>
+    <div class="slider-arrow right" onclick="nextSlide()">&#10095;</div>
+
     <div class="slides">
       <img src="images/img1.jpg" class="slide active" />
       <img src="images/img2.jpg" class="slide" />
@@ -31,8 +36,6 @@
       <img src="images/img5.jpg" class="slide" />
     </div>
 
-    <div class="slider-arrow left" onclick="prevSlide()">&#10094;</div>
-    <div class="slider-arrow right" onclick="nextSlide()">&#10095;</div>
 
     <!-- Dots navigation (BURASI EKLENDİ) -->
     <div class="slider-dots" id="sliderDots"></div>
@@ -40,8 +43,10 @@
 
   <!-- Footer -->
   <div id="footer-container"></div>
-  <script src="script.js"></script>
+
   <script src="include.js"></script>
+  <script src="script.js"></script>
+  
 </body>
 
 </html>

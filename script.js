@@ -37,11 +37,13 @@ function goToSlide(index) {
 }
 
 function nextSlide() {
-  showSlide((slideIndex + 1) % slides.length);
+  slideIndex = (slideIndex + 1) % slides.length;
+  showSlide(slideIndex);
 }
 
 function prevSlide() {
-  showSlide((slideIndex - 1 + slides.length) % slides.length);
+  slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+  showSlide(slideIndex);
 }
 
 function startAutoSlide() {
