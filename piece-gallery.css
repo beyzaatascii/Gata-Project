@@ -1,0 +1,248 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px; /* 1rem = 16px */
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fafafa;
+  overflow-x: hidden;
+}
+
+
+/* LOGO + MENU ICON YAPISI */
+.logo-header {
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  text-align: center;
+}
+
+.header-logo {
+  margin-top: -1.5rem;
+  width: 280px;
+  max-width: 100%;
+  height: auto;
+}
+
+.logo {
+  width: 280px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Menü */
+.menu-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  margin-top: -1rem;
+  margin-bottom: -4rem;
+}
+
+.menu-icon:hover {
+  opacity: 0.6;
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.dropdown-menu {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3.5rem;
+  margin-top: 5rem;
+  margin-bottom: -5rem;
+  /* slider’la arasına boşluk ekledik */
+  text-align: center;
+}
+
+.dropdown-menu.show {
+  display: flex;
+}
+
+/* Menü linkleri */
+.dropdown-menu a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  color: #999;
+  /* veya #555 ya da pastel bir ton */
+  transform: translateX(2px);
+  /* hafif sağa kayar */
+}
+
+
+/* --- EKRAN BOYUTUNA GÖRE DÜZENLEME --- */
+
+/* MASAÜSTÜ: 4lü düzgün */
+@media (min-width: 992px) {
+  .dropdown-menu {
+    flex-wrap: nowrap;
+    /* Satır kırılmasını engeller */
+    gap: 6rem;
+  }
+
+  .dropdown-menu a {
+    flex: 0 0 auto;
+  }
+}
+
+/* TABLET: 2x2 */
+@media (min-width: 576px) and (max-width: 768px) {
+  .dropdown-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem 4rem;
+  }
+
+  .dropdown-menu a {
+    flex: 0 1 40%;
+  }
+}
+
+/* MOBİL: Alt alta */
+@media (max-width: 576px) {
+  .dropdown-menu {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .dropdown-menu a {
+    width: 100%;
+    padding: 0.3rem 0;
+  }
+}
+
+.gallery-section {
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  width: 100%;
+  justify-items: center;
+}
+
+.gallery-item {
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  transition: transform 0.3s;
+}
+
+.gallery-item:hover {
+  transform: scale(1.03);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item p {
+  margin-top: 0.8rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Mobil (1 kolon) */
+@media (max-width: 575.98px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet (2 kolon) */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Büyük ekran (4 kolon) */
+@media (min-width: 992px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+
+/*Footer*/
+.footer {
+  background-color: #fafafa;
+  padding: 0.8rem 3rem;
+  text-align: center;
+  border-top: 1px solid ;
+  margin-top: 1rem;
+  border-style: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-info p {
+  font-size: 0.875rem;
+  color: #000000;
+  margin: 0;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  font-size: 0.875rem;
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #999;
+}
+
+.footer-links i {
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  color: #000000;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover i {
+  color: #999;
+}
