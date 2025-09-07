@@ -1,11 +1,9 @@
 .slider-container {
   margin-top: 5rem;
-  width: 100%;
-  max-width: 100%;
-  height: 90vh; /* masaüstü için */
+  width: 100vw;
+  height: 90vh;
   position: relative;
   overflow: hidden;
-  padding: 0 1rem;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -23,7 +21,6 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
   object-position: center;
   opacity: 0;
@@ -35,14 +32,7 @@
   z-index: 2;
 }
 
-/* Tablet için daha az yüksek */
-@media (max-width: 992px) {
-  .slider-container {
-    height: 70vh;
-  }
-}
-
-/* Mobil için daha da küçült */
+/* Mobilde contain ile tam gösterim */
 @media (max-width: 576px) {
   .slider-container {
     height: 50vh;
@@ -52,6 +42,13 @@
   .slide {
     object-fit: contain;
     background-color: #fafafa;
+  }
+}
+
+/* Tablet için */
+@media (max-width: 992px) {
+  .slider-container {
+    height: 70vh;
   }
 }
 
@@ -80,24 +77,23 @@
   transform: scale(1.2);
 }
 
-
 /* Ok tuşları */
 .slider-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   font-size: 2.2rem;
-  color: rgba(0, 0, 0, 0.5);  /* Hafif transparan siyah */
-  background: none;           /* Arka plan tamamen kaldırıldı */
-  border: none;               /* Kenarlık yok */
-  padding: 0;                 /* Fazla boşluk sıfırlandı */
+  color: rgba(0, 0, 0, 0.5);
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
   z-index: 4;
   transition: color 0.2s ease;
 }
 
 .slider-arrow:hover {
-  color: #000; /* Üzerine gelince daha koyu */
+  color: #000;
 }
 
 .slider-arrow.left {
