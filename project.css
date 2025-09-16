@@ -24,7 +24,7 @@
 .project-item img {
   width: 100%;
   height: 300px; /* Sabit yükseklik eklendi */
-  object-fit: cover; /* En-boy oranını koruyarak kırpma */
+  object-fit: fill; /* En-boy oranını koruyarak kırpma */
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
@@ -39,38 +39,6 @@
   transition: color 0.3s ease;
 }
 
-
-/* FULLSCREEN OVERLAY */
-.fullscreen-overlay {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.9);
-  justify-content: center;
-  align-items: center;
-}
-
-.fullscreen-overlay img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-}
-
-.fullscreen-overlay .close-btn {
-  position: absolute;
-  top: 1.5rem;
-  right: 2rem;
-  font-size: 2.5rem;
-  color: #fff;
-  cursor: pointer;
-  z-index: 10000;
-}
-
 /* RESPONSIVE AYARLAR */
 @media (max-width: 1024px) {
   .project-item {
@@ -81,5 +49,17 @@
 @media (max-width: 768px) {
   .project-item {
     flex: 0 0 100%;
+  }
+}
+
+/* Mobil için ekstra boşluk */
+@media (max-width: 576px) {
+  .project-gallery {
+    padding: 6rem 1rem 5rem 1rem; /* Üst ve alt boşluk arttı */
+    gap: 2.5rem;
+  }
+
+  .project-item {
+    margin-bottom: 2.5rem;
   }
 }

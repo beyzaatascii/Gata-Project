@@ -24,19 +24,13 @@
     <!-- JS ile projeler buraya yüklenecek -->
   </div>
 
-  <!-- Görsel Modal -->
-  <div id="fullscreenOverlay" class="fullscreen-overlay" onclick="closeFullscreen(event)">
-    <img id="fullscreenImg" src="" alt="Fullscreen Image" />
-    <span class="close-btn" onclick="closeFullscreen(event)">&times;</span>
-  </div>
-
   <!-- Footer -->
   <div id="footer-container"></div>
 
   <script src="include.js"></script>
-  <script src="projects.js"></script>
+  <script src="project.js"></script>
 
-  <script>
+ <script>
   // Projeleri yükle
   const container = document.getElementById("projectGallery");
 
@@ -47,34 +41,16 @@
     const imgPath = `images/projects/${project.folder}/${project.cover}`;
 
     div.innerHTML = `
-      <a href="project.html?slug=${project.folder}">
-        <img src="${imgPath}" alt="${project.title}" onclick="openFullscreen('${imgPath}')" />
+      <a href="proje_detay.html?slug=${project.folder}" onclick="return handleImageClick(event, '${imgPath}')">
+        <img src="${imgPath}" alt="${project.title}" />
         <p>${project.title}</p>
       </a>
     `;
 
     container.appendChild(div);
   });
-
-  // Fullscreen modal
-  function openFullscreen(src) {
-    const overlay = document.getElementById("fullscreenOverlay");
-    const img = document.getElementById("fullscreenImg");
-    img.src = src;
-    overlay.style.display = "flex";
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeFullscreen(event) {
-    if (
-      event.target.id === "fullscreenOverlay" ||
-      event.target.classList.contains("close-btn")
-    ) {
-      document.getElementById("fullscreenOverlay").style.display = "none";
-      document.body.style.overflow = "";
-    }
-  }
 </script>
+
 
 </body>
 

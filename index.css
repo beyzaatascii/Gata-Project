@@ -14,6 +14,7 @@
   position: relative;
   z-index: 1;
   /* slider aşağıda kalsın */
+  
 }
 
 .slides {
@@ -23,6 +24,7 @@
 }
 
 .slide {
+  border-radius: 10px;
   position: absolute;
   inset: 0;
   width: 100%;

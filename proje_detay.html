@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proje Detay | GATA DESIGN</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="proje_detay.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+
+    <div class="slider">
+        <button class="prev" onclick="changeSlide(-1)">‹</button>
+        <img id="sliderImage" src="" alt="Proje Görseli" />
+        <button class="next" onclick="changeSlide(1)">›</button>
+    </div>
+
+    <div class="project-meta">
+        <h2 id="projectTitle"></h2>
+        <p id="projectYear"></p>
+    </div>
+
+    <button id="infoBtn" onclick="toggleInfo()">Info</button>
+
+    <div id="infoModal" class="info-modal">
+        <div class="info-content">
+            <span class="close-btn" onclick="toggleInfo()">&times;</span>
+            <div class="info-item"><strong>Konum:</strong> <span id="location"></span></div>
+            <div class="info-item"><strong>Kategori:</strong> <span id="category"></span></div>
+            <div class="info-item"><strong>Tasarımcı:</strong> <span id="designer"></span></div>
+            <div class="info-item"><strong>Durum:</strong> <span id="status"></span></div>
+        </div>
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="include.js"></script>
+    <script src="project.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const slug = params.get("slug");
+
+        const project = projects.find(p => p.folder === slug);
+
+        if (project) {
+            document.getElementById("projectTitle").textContent = project.title;
+            document.getElementById("projectYear").textContent = project.year;
+            document.getElementById("location").textContent = project.location;
+            document.getElementById("category").textContent = project.category;
+            document.getElementById("designer").textContent = project.designer;
+            document.getElementById("status").textContent = project.status;
+
+            let currentIndex = 0;
+            const sliderImage = document.getElementById("sliderImage");
+
+            function updateSlider() {
+                if (!project.slides || project.slides.length === 0) return;
+                sliderImage.src = `images/projects/${project.folder}/${project.slides[currentIndex]}`;
+            }
+
+            updateSlider();
+
+            window.changeSlide = function (direction) {
+                if (!project.slides || project.slides.length === 0) return;
+                currentIndex = (currentIndex + direction + project.slides.length) % project.slides.length;
+                updateSlider();
+            }
+
+            window.toggleInfo = function () {
+                const modal = document.getElementById("infoModal");
+                modal.classList.toggle("show");
+            }
+
+        } else {
+            document.body.innerHTML = "<p style='text-align:center;'>Proje bulunamadı.</p>";
+        }
+    </script>
+</body>
+
+</html>
