@@ -1,63 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeler | GATA DESIGN</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="project.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="icon" type="image/png" href="favicon.png" sizes="48x48">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeler | GATA DESIGN</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="project.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/png" href="favicon.png" sizes="48x48" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
 </head>
 
 <body>
-    <!-- LOGO + MENU -->
-    <div id="navbar-container"></div>
+  <!-- LOGO + MENU -->
+  <div id="navbar-container"></div>
 
-    <div class="project-gallery">
-        <div class="project-item">
-            <img src="images/project1.jpg" alt="Project 1" />
-            <p>BEDROOM SCENE for ELLP</p>
-        </div>
-        <div class="project-item">
-            <img src="images/project2.jpg" alt="Project 2" />
-            <p>INTERIOR CONCEPT for MARU DESIGN</p>
-        </div>
-        <!-- Devam edebilirsin -->
-    </div>
+  <!-- Proje Galerisi -->
+  <div class="project-gallery" id="projectGallery">
+    <!-- JS ile projeler buraya yüklenecek -->
+  </div>
 
-    <!-- FULLSCREEN GÖRSEL MODALI -->
-    <div id="fullscreenOverlay" class="fullscreen-overlay" onclick="closeFullscreen(event)">
-        <img id="fullscreenImg" src="" alt="Fullscreen Image">
-        <span class="close-btn" onclick="closeFullscreen(event)">&times;</span>
-    </div>
+  <!-- Görsel Modal -->
+  <div id="fullscreenOverlay" class="fullscreen-overlay" onclick="closeFullscreen(event)">
+    <img id="fullscreenImg" src="" alt="Fullscreen Image" />
+    <span class="close-btn" onclick="closeFullscreen(event)">&times;</span>
+  </div>
 
-    <!-- Footer -->
-    <div id="footer-container"></div>
+  <!-- Footer -->
+  <div id="footer-container"></div>
 
-    <script src="include.js"></script>
-    <script>
-        function openFullscreen(src) {
-            const overlay = document.getElementById('fullscreenOverlay');
-            const img = document.getElementById('fullscreenImg');
-            img.src = src;
-            overlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Scroll disable
-        }
+  <script src="include.js"></script>
+  <script src="projects.js"></script>
 
-        function closeFullscreen(event) {
-            // Tıklama sadece overlay'e veya çarpıya ise kapat
-            if (event.target.id === "fullscreenOverlay" || event.target.classList.contains('close-btn')) {
-                document.getElementById('fullscreenOverlay').style.display = 'none';
-                document.body.style.overflow = ''; // Scroll enable
-            }
-        }
-    </script>
+  <script>
+  // Projeleri yükle
+  const container = document.getElementById("projectGallery");
+
+  projects.forEach((project) => {
+    const div = document.createElement("div");
+    div.className = "project-item";
+
+    const imgPath = `images/projects/${project.folder}/${project.cover}`;
+
+    div.innerHTML = `
+      <a href="project.html?slug=${project.folder}">
+        <img src="${imgPath}" alt="${project.title}" onclick="openFullscreen('${imgPath}')" />
+        <p>${project.title}</p>
+      </a>
+    `;
+
+    container.appendChild(div);
+  });
+
+  // Fullscreen modal
+  function openFullscreen(src) {
+    const overlay = document.getElementById("fullscreenOverlay");
+    const img = document.getElementById("fullscreenImg");
+    img.src = src;
+    overlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeFullscreen(event) {
+    if (
+      event.target.id === "fullscreenOverlay" ||
+      event.target.classList.contains("close-btn")
+    ) {
+      document.getElementById("fullscreenOverlay").style.display = "none";
+      document.body.style.overflow = "";
+    }
+  }
+</script>
 
 </body>
 

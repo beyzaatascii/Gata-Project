@@ -12,9 +12,19 @@
   text-align: center;
 }
 
+.project-item a {
+  text-decoration: none;
+  color: black;
+}
+
+.project-item a:hover p {
+  color: #999;
+}
+
 .project-item img {
   width: 100%;
-  height: auto;
+  height: 300px; /* Sabit yükseklik eklendi */
+  object-fit: cover; /* En-boy oranını koruyarak kırpma */
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
@@ -26,7 +36,9 @@
   font-weight: 500;
   color: #000000;
   letter-spacing: 0.05em;
+  transition: color 0.3s ease;
 }
+
 
 /* FULLSCREEN OVERLAY */
 .fullscreen-overlay {

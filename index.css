@@ -2,7 +2,8 @@
   margin-top: 5rem;
   width: 100%;
   max-width: 100%;
-  height: 90vh; /* masaüstü için */
+  height: 90vh;
+  /* masaüstü için */
   position: relative;
   overflow: hidden;
   padding: 0 1rem;
@@ -10,6 +11,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 1;
+  /* slider aşağıda kalsın */
 }
 
 .slides {
@@ -87,17 +91,22 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 2.2rem;
-  color: rgba(0, 0, 0, 0.5);  /* Hafif transparan siyah */
-  background: none;           /* Arka plan tamamen kaldırıldı */
-  border: none;               /* Kenarlık yok */
-  padding: 0;                 /* Fazla boşluk sıfırlandı */
+  color: rgba(0, 0, 0, 0.5);
+  /* Hafif transparan siyah */
+  background: none;
+  /* Arka plan tamamen kaldırıldı */
+  border: none;
+  /* Kenarlık yok */
+  padding: 0;
+  /* Fazla boşluk sıfırlandı */
   cursor: pointer;
   z-index: 4;
   transition: color 0.2s ease;
 }
 
 .slider-arrow:hover {
-  color: #000; /* Üzerine gelince daha koyu */
+  color: #000;
+  /* Üzerine gelince daha koyu */
 }
 
 .slider-arrow.left {
