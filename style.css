@@ -39,6 +39,26 @@ html, body {
   margin: 0 auto;
 }
 
+@media (max-width: 576px) {
+  
+  .logo-header {
+    padding: 0.2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .header-logo,
+  .logo {
+    width: 220px; /* Mobilde biraz daha küçük */
+    height: auto;
+    margin: 0 auto;
+  }
+}
+
+
+
 /* Menü */
 .menu-icon {
   display: flex;
