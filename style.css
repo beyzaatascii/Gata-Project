@@ -22,6 +22,7 @@ html, body {
   align-items: center;
   gap: 0.3rem;
   text-align: center;
+  position: static;
 }
 
 .header-logo {

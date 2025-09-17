@@ -1,39 +1,45 @@
-/* Genel gövde boşluğu */
+/* BODY */
 body {
-  padding: 0 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container (sayfa merkezi) */
+.container {
+  max-width: 1200px;
+  margin: 60px auto;      /* ortalama */
+  padding: 0 1rem;        /* kenarlardan boşluk */
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
-  body {
-    padding: 0 3rem;
+  .container {
+    padding: 0 2rem;
   }
 }
 
-/* Ortak boşluk ayarı */
-.slider,
-.project-meta,
-#infoBtn,
-.info-modal {
-  margin: 0 auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  max-width: 1000px;
-  box-sizing: border-box;
+@media (min-width: 1200px) {
+  .container {
+    padding: 0;
+  }
 }
 
 /* SLIDER */
 .slider {
   position: relative;
   margin: 2rem auto;
-  text-align: center;
   border-radius: 16px;
   overflow: hidden;
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .slider img {
   width: 100%;
   max-height: 70vh;
-  object-fit: fill;
+  object-fit: cover;
   border-radius: 16px;
 }
 
@@ -44,35 +50,31 @@ body {
   transform: translateY(-50%);
   font-size: 2.2rem;
   color: rgba(0, 0, 0, 0.5);
-  /* Hafif transparan siyah */
   background: none;
-  /* Arka plan tamamen kaldırıldı */
   border: none;
-  /* Kenarlık yok */
   padding: 0;
-  /* Fazla boşluk sıfırlandı */
   cursor: pointer;
   z-index: 4;
   transition: color 0.2s ease;
 }
-
 
 .slider button:hover {
   color: #000;
 }
 
 .slider .prev {
-  left: 3px;
+  left: 10px;
 }
 
 .slider .next {
-  right: 3px;
+  right: 10px;
 }
 
-/* BAŞLIK + ALT BİLGİ */
+/* PROJE METASI */
 .project-meta {
   text-align: center;
   margin: 2rem auto;
+  max-width: 1000px;
 }
 
 .project-meta h2 {
@@ -108,33 +110,36 @@ body {
 .info-modal {
   display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.6); /* daha koyu overlay */
-  backdrop-filter: blur(2px); /* arka plan bulanıklığı */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 9999;
 }
 
 .info-modal.show {
   display: flex;
 }
 
-/* INFO CARD */
+/* MODAL CONTENT */
 .info-content {
   background: #fff;
   padding: 2rem;
   border-radius: 16px;
+  max-width: 600px;
   width: 90%;
-  max-width: 500px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35); /* daha yoğun gölge */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   text-align: left;
   position: relative;
-  transition: all 0.3s ease-in-out;
+  animation: fadeIn 0.3s ease;
 }
 
-/* KAPATMA BUTONU */
+/* CLOSE BUTTON */
 .info-content .close-btn {
   position: absolute;
   top: 1rem;
@@ -143,6 +148,12 @@ body {
   cursor: pointer;
   color: #333;
   font-weight: bold;
+}
+
+/* Açılış animasyonu */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 /* SATIR YAPISI */
@@ -159,13 +170,20 @@ body {
   flex: 0 0 120px;
 }
 
-/* RESPONSIVE */
+@media (min-width: 900px) {
+  .info-content {
+    max-width: 700px;
+    padding: 2.5rem;
+    font-size: 1.05rem;
+  }
+}
+
 @media (max-width: 500px) {
   .info-content {
     padding: 1.2rem 1rem;
     width: 95%;
     max-width: 95%;
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25); /* mobilde biraz daha az shadow */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
   }
 
   .info-item {
