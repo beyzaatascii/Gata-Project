@@ -33,7 +33,7 @@ body {
 .slider img {
   width: 100%;
   max-height: 70vh;
-  object-fit: contain;
+  object-fit: fill;
   border-radius: 16px;
 }
 
@@ -42,25 +42,31 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: none; /* Arka plan tamamen kaldırıldı */
+  font-size: 2.2rem;
+  color: rgba(0, 0, 0, 0.5);
+  /* Hafif transparan siyah */
+  background: none;
+  /* Arka plan tamamen kaldırıldı */
   border: none;
-  font-size: 2rem;
+  /* Kenarlık yok */
+  padding: 0;
+  /* Fazla boşluk sıfırlandı */
   cursor: pointer;
-  color: #333;
-  padding: 0; /* padding de sıfırlandı */
+  z-index: 4;
+  transition: color 0.2s ease;
 }
 
 
 .slider button:hover {
-  background:none;
+  color: #000;
 }
 
 .slider .prev {
-  left: 10px;
+  left: 3px;
 }
 
 .slider .next {
-  right: 10px;
+  right: 3px;
 }
 
 /* BAŞLIK + ALT BİLGİ */
@@ -86,24 +92,26 @@ body {
   padding: 0.6rem 2rem;
   font-size: 1rem;
   cursor: pointer;
-  border: none;
-  background: transparent;
-  text-decoration: underline;
+  border-radius: 20px;
+  background: #fafafa;
+  text-decoration: none;
   color: #000;
   font-weight: 500;
 }
 
 #infoBtn:hover {
-  color: #999;
+  color: #fafafa;
+  background: #000;
 }
 
-/* MODAL */
+/* MODAL OVERLAY */
 .info-modal {
   display: none;
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.6); /* daha koyu overlay */
+  backdrop-filter: blur(2px); /* arka plan bulanıklığı */
   justify-content: center;
   align-items: center;
   z-index: 999;
@@ -113,17 +121,20 @@ body {
   display: flex;
 }
 
+/* INFO CARD */
 .info-content {
   background: #fff;
   padding: 2rem;
   border-radius: 16px;
   width: 90%;
   max-width: 500px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35); /* daha yoğun gölge */
   text-align: left;
   position: relative;
+  transition: all 0.3s ease-in-out;
 }
 
+/* KAPATMA BUTONU */
 .info-content .close-btn {
   position: absolute;
   top: 1rem;
@@ -134,10 +145,10 @@ body {
   font-weight: bold;
 }
 
-/* BİLGİ SATIRI */
+/* SATIR YAPISI */
 .info-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin: 0.6rem 0;
   font-size: 0.95rem;
 }
@@ -148,17 +159,20 @@ body {
   flex: 0 0 120px;
 }
 
+/* RESPONSIVE */
 @media (max-width: 500px) {
   .info-content {
-    padding: 1.5rem;
+    padding: 1.2rem 1rem;
+    width: 95%;
+    max-width: 95%;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25); /* mobilde biraz daha az shadow */
   }
 
   .info-item {
-    flex-direction: column;
-    gap: 0.3rem;
+    font-size: 0.9rem;
   }
 
   .info-item strong {
-    width: 100%;
+    font-size: 0.95rem;
   }
 }

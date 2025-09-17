@@ -56,7 +56,7 @@
   }
 
   .slide {
-    object-fit: contain;
+    object-fit: fill;
     background-color: #fafafa;
   }
 }
