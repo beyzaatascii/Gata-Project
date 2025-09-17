@@ -120,6 +120,7 @@ html, body {
   .dropdown-menu {
     flex-direction: column;
     gap: 0.5rem;
+    padding-bottom: 20px;
   }
 
   .dropdown-menu a {

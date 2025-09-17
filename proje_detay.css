@@ -195,7 +195,25 @@ body {
   }
 
   .container {
-    margin-top: 75px;
+    margin-top: 80px;
   }
+
+  .slider button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.2rem;
+  color:#000;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 4;
+  transition: color 0.2s ease;
+}
+
+.slider button:hover {
+  color: #fafafa;
+}
 }
 
