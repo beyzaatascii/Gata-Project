@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Proje Detay | GATA DESIGN</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="proje_detay.css" />
@@ -13,15 +13,130 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
 
+    <style>
+        .slider {
+            position: relative;
+            overflow: hidden;
+            max-width: 1200px;
+            margin: 2rem auto;
+            border-radius: 16px;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 70%;
+            margin-right: 10px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            display: block;
+        }
+
+        .slider button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .prev {
+            left: 15px;
+        }
+
+        .next {
+            right: 15px;
+        }
+
+        /* 🔥 LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            flex-direction: column;
+        }
+
+        .lightbox.show {
+            display: flex;
+        }
+
+        .lightbox img {
+            width: 100vw;
+            /* ekran genişliğini tamamen kapla */
+            height: 100vh;
+            /* ekran yüksekliğini tamamen kapla */
+            object-fit: contain;
+            /* kırpılma olmasın, orantıyı koru */
+            border-radius: 0;
+            /* köşeler düz */
+        }
+
+
+        .lightbox .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 100000;
+        }
+
+        .lightbox button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 100000;
+        }
+
+        .lightbox .prev-lightbox {
+            left: 20px;
+        }
+
+        .lightbox .next-lightbox {
+            right: 20px;
+        }
+    </style>
 </head>
 
 <body>
     <div id="navbar-container"></div>
+
     <div class="container">
         <div class="slider">
-            <button class="prev" onclick="changeSlide(-1)">‹</button>
-            <img id="sliderImage" src="" alt="Proje Görseli" />
-            <button class="next" onclick="changeSlide(1)">›</button>
+            <div class="slider-track" id="sliderTrack"></div>
+            <button class="prev" id="prevBtn">‹</button>
+            <button class="next" id="nextBtn">›</button>
         </div>
 
         <div class="project-meta">
@@ -30,6 +145,14 @@
         </div>
 
         <button id="infoBtn" onclick="toggleInfo()">Detay</button>
+    </div>
+
+    <!-- 🔥 LIGHTBOX -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-btn" id="closeLightbox">&times;</span>
+        <button class="prev-lightbox" id="prevLightbox">‹</button>
+        <img id="lightboxImg" src="" alt="Fullscreen Görsel" />
+        <button class="next-lightbox" id="nextLightbox">›</button>
     </div>
 
     <div id="infoModal" class="info-modal">
@@ -60,29 +183,97 @@
             document.getElementById("designer").textContent = project.designer;
             document.getElementById("status").textContent = project.status;
 
-            let currentIndex = 0;
-            const sliderImage = document.getElementById("sliderImage");
+            const track = document.getElementById("sliderTrack");
 
-            function updateSlider() {
-                if (!project.slides || project.slides.length === 0) return;
-                sliderImage.src = `images/projects/${project.folder}/${project.slides[currentIndex]}`;
+            // 🔥 sonsuz döngü için clone ile baş/sona ekle
+            const slides = [...project.slides];
+            const extendedSlides = [slides[slides.length - 1], ...slides, slides[0]];
+
+            extendedSlides.forEach(img => {
+                const div = document.createElement("div");
+                div.classList.add("slide");
+                div.innerHTML = `<img src="images/projects/${project.folder}/${img}" alt="${project.title}">`;
+                track.appendChild(div);
+            });
+
+            let index = 1; // ilk gerçek resim
+            const slideWidth = 70;
+
+            // Başlangıç konumu
+            track.style.transform = `translateX(-${index * slideWidth}%)`;
+
+            function moveSlide(dir) {
+                if (dir === "next") index++;
+                else index--;
+
+                track.style.transition = "transform 0.5s ease";
+                track.style.transform = `translateX(-${index * slideWidth}%)`;
             }
 
-            updateSlider();
+            document.getElementById("nextBtn").addEventListener("click", () => moveSlide("next"));
+            document.getElementById("prevBtn").addEventListener("click", () => moveSlide("prev"));
 
-            window.changeSlide = function (direction) {
-                if (!project.slides || project.slides.length === 0) return;
-                currentIndex = (currentIndex + direction + project.slides.length) % project.slides.length;
-                updateSlider();
+            // Sonsuz döngü reset
+            track.addEventListener("transitionend", () => {
+                if (index === extendedSlides.length - 1) {
+                    track.style.transition = "none";
+                    index = 1;
+                    track.style.transform = `translateX(-${index * slideWidth}%)`;
+                }
+                if (index === 0) {
+                    track.style.transition = "none";
+                    index = extendedSlides.length - 2;
+                    track.style.transform = `translateX(-${index * slideWidth}%)`;
+                }
+            });
+
+            // 🔥 LIGHTBOX sistemi
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImg = document.getElementById("lightboxImg");
+            const closeLightbox = document.getElementById("closeLightbox");
+            const prevLightbox = document.getElementById("prevLightbox");
+            const nextLightbox = document.getElementById("nextLightbox");
+
+            let currentLightboxIndex = 0;
+
+            function openLightbox(imgSrc, slideIndex) {
+                lightboxImg.src = imgSrc;
+                lightbox.classList.add("show");
+                document.body.style.overflow = "hidden";
+                currentLightboxIndex = slideIndex;
             }
 
-            window.toggleInfo = function () {
-                const modal = document.getElementById("infoModal");
-                modal.classList.toggle("show");
+            function showLightboxImage(i) {
+                currentLightboxIndex = (i + slides.length) % slides.length;
+                lightboxImg.src = `images/projects/${project.folder}/${slides[currentLightboxIndex]}`;
             }
+
+            track.addEventListener("click", (e) => {
+                if (e.target.tagName === "IMG") {
+                    const clickedIndex = slides.findIndex(s => e.target.src.includes(s));
+                    openLightbox(e.target.src, clickedIndex);
+                }
+            });
+
+            closeLightbox.addEventListener("click", () => {
+                lightbox.classList.remove("show");
+                document.body.style.overflow = "auto";
+            });
+
+            prevLightbox.addEventListener("click", () => {
+                showLightboxImage(currentLightboxIndex - 1);
+            });
+
+            nextLightbox.addEventListener("click", () => {
+                showLightboxImage(currentLightboxIndex + 1);
+            });
 
         } else {
             document.body.innerHTML = "<p style='text-align:center;'>Proje bulunamadı.</p>";
+        }
+
+        window.toggleInfo = function () {
+            document.getElementById("infoModal").classList.toggle("show");
         }
     </script>
 </body>
