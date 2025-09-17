@@ -102,6 +102,12 @@ html, body {
   .dropdown-menu a {
     flex: 0 0 auto;
   }
+
+   .dropdown-menu {
+    flex-direction: row;
+    gap: 6rem;
+    padding: 1rem 0;   /* 🔥 masaüstünde daha ince boşluk */
+  }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
