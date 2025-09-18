@@ -1,61 +1,71 @@
+/* Masaüstünde 4 sütun, ortalı grid ve EŞİT KART BOYU */
 
-.gallery-section {
-  padding: 4rem 2rem;
-  display: flex;
-  justify-content: center;
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2.5rem;
-  max-width: 1200px;
-  width: 100%;
-  justify-items: center;
-}
-
-.gallery-item {
-  text-align: center;
-  text-decoration: none;
-  color: black;
-  transition: transform 0.3s;
-}
-
-.gallery-item:hover {
-  transform: scale(1.03);
-}
-
-.gallery-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
-}
-
-.gallery-item p {
-  margin-top: 0.8rem;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-}
-
-/* Mobil (1 kolon) */
-@media (max-width: 575.98px) {
-  .gallery-grid {
-    grid-template-columns: 1fr;
+  .wrapper {
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
   }
-}
 
-/* Tablet (2 kolon) */
-@media (min-width: 576px) and (max-width: 991.98px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Büyük ekran (4 kolon) */
-@media (min-width: 992px) {
-  .gallery-grid {
+  .grid-container {
+    display: grid;
+    width: min(1240px, 100%);
     grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    align-items: start;
+    justify-items: center;
+    margin-top: 70px;
+  }
+
+  .grid-item {
+    display: flex;                /* kartı dikey hizala */
+    flex-direction: column;
+    width: 100%;
+    text-decoration: none;
+    color: #000;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+
+  .grid-item img {
+    width: 100%;
+    /* TÜM KARTLARIN BOYU EŞİT: sabit oran */
+    aspect-ratio: 4 / 5;
+    height: auto;
+    object-fit: cover;            /* boşluk yok, biraz kırpar */
+    background: transparent;      /* arkadaki beyazlıklar kalksın */
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.12);
+    display: block;
+  }
+
+  .grid-item p {
+    margin-top: .8rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    font-size: .95rem;
+    text-align: center;
+    min-height: 1.2em;            /* tek satır başlıkta eşit yükseklik */
+  }
+
+  .grid-item:hover { transform: translateY(-2px); }
+
+
+/* Tablet: 2 sütun, Mobil: 1 sütun */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    width: min(900px, 100%);
   }
 }
+@media (max-width: 575.98px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: min(520px, 100%);
+  }
+}
+

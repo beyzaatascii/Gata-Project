@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ürün Detayları | GATA DESIGN</title>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="product.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,23 +29,49 @@
     <div class="product-info">
       <h2 id="product-title">Loading...</h2>
       <p id="product-description"></p>
+
+      <!-- Detay başlığı (pill). Modal bununla açılacak -->
+      <div class="product-meta-section is-hidden">
+        <div class="pill-title">Detay</div>
+        <!-- inline kartı artık kullanmıyoruz; CSS ile gizlenecek -->
+        <div class="meta-card">
+          <table class="meta-table">
+            <tbody id="product-meta"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- FOOTER -->
   <div id="footer-container"></div>
-  
+
   <!-- LIGHTBOX TAM EKRAN GÖRSEL -->
   <div id="lightbox" class="lightbox">
     <span class="close-btn" onclick="closeLightbox()">×</span>
     <img id="lightbox-img" src="" alt="Full image">
   </div>
 
+  <!-- DETAY MODAL (ORTADA AÇILIR) -->
+  <!-- DETAY MODAL -->
+  <div id="meta-modal" class="mm" aria-hidden="true" hidden>
+    <div class="mm-backdrop"></div>
+    <div class="mm-dialog" role="dialog" aria-modal="true">
+      <div class="mm-card">
+        <button class="mm-close" aria-label="Kapat">×</button>
+        <table class="meta-table">
+          <tbody id="meta-modal-rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
   <!-- VERİLER -->
   <script src="furniture.js"></script>
   <script src="ceramics.js"></script>
   <script src="lighting.js"></script>
-  
+
   <!-- ÜRÜN DETAY -->
   <script src="product.js"></script>
   <!-- NAVBAR + FOOTER -->

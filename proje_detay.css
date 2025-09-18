@@ -43,32 +43,50 @@ body {
   border-radius: 16px;
 }
 
-/* SLIDER BUTTON */
-.slider button {
+/* === SLIDER ARROWS: sade siyah chevron === */
+.slider{
+  position: relative; /* butonların konumu için gerekli */
+}
+
+.slider button{
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 2.2rem;
-  color: rgba(0, 0, 0, 0.5);
-  background: none;
+  padding: 12px 14px;         /* tıklanabilir alan */
+  background: transparent;
   border: none;
-  padding: 0;
   cursor: pointer;
+  color: #000;                /* ok rengi (currentColor) */
+  font-size: 0;               /* < veya > varsa gizle */
+  line-height: 0;
   z-index: 4;
-  transition: color 0.2s ease;
 }
 
-.slider button:hover {
-  color: #000;
+.slider button:hover{
+  color: #fafafa;             /* istersen #000 bırakabilirsin */
 }
 
-.slider .prev {
-  left: 10px;
+.slider button::before{
+  content: "";
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-left: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  transform: rotate(var(--rot));
+  transition: transform .15s ease, opacity .15s ease;
+  opacity: .9;
 }
 
-.slider .next {
-  right: 10px;
+.slider .prev{ left: 10px;  --rot: 45deg; }      /* ‹ */
+.slider .next{ right: 10px; --rot: -135deg; }    /* › */
+
+.slider button:hover::before,
+.slider button:focus-visible::before{
+  transform: rotate(var(--rot)) scale(1.12);
+  opacity: 1;
 }
+
 
 /* PROJE METASI */
 .project-meta {
@@ -198,22 +216,5 @@ body {
     margin-top: 80px;
   }
 
-  .slider button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2.2rem;
-  color:#000;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  z-index: 4;
-  transition: color 0.2s ease;
-}
-
-.slider button:hover {
-  color: #fafafa;
-}
 }
 

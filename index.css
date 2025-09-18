@@ -87,34 +87,54 @@
 }
 
 
-/* Ok tuşları */
 .slider-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 2.2rem;
-  color: rgba(0, 0, 0, 0.5);
-  /* Hafif transparan siyah */
-  background: none;
-  /* Arka plan tamamen kaldırıldı */
+  padding: 12px 14px;
+  background: transparent;
   border: none;
-  /* Kenarlık yok */
-  padding: 0;
-  /* Fazla boşluk sıfırlandı */
   cursor: pointer;
+  color: #000;      /* ok rengi */
+  font-size: 0;     /* içteki karakteri gizle */
   z-index: 4;
-  transition: color 0.2s ease;
+  line-height: 0;
+}
+.slider-arrow:hover{
+  color: #fafafa;
 }
 
-.slider-arrow:hover {
-  color: #000;
-  /* Üzerine gelince daha koyu */
+.slider-arrow::before{
+  content: "";
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-left: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  transform: rotate(var(--rot));
+  transition: transform .15s ease, opacity .15s ease;
+  opacity: .9;
 }
 
+/* Sol ok */
 .slider-arrow.left {
-  left: 15px;
+  left: 10px;
+  --rot: 45deg;        /* ‹ */
 }
 
+/* Sağ ok */
 .slider-arrow.right {
-  right: 15px;
+  right: 10px;         /* <<< burası left değil right olmalı */
+  --rot: -135deg;      /* › (45deg'in tersi) */
+}
+
+.slider-arrow:hover::before,
+.slider-arrow:focus-visible::before{
+  transform: rotate(var(--rot)) scale(1.12);
+  opacity: 1;
+}
+
+.slider-arrow:focus-visible{
+  outline: 2px solid #0003;
+  border-radius: 4px;
 }

@@ -24,24 +24,41 @@
 
   <div id="footer-container"></div>
 
-  <!-- Mobilya verileri -->
-  <script src="js/furniture.js"></script>
+<!-- Mobilya verileri -->
+<script src="furniture.js?v=1"></script>
 
-  <!-- Sayfada ürünleri listeleme -->
-  <script>
-    const container = document.getElementById("furniture-list");
-    furnitureProducts.forEach(p => {
-      const card = document.createElement("a");
-      card.classList.add("grid-item");
-      card.href = `product.html?cat=furniture&name=${p.id}`;
-      card.innerHTML = `
-        <img src="images/pieces/furniture/${p.id}/${p.cover}" alt="${p.title}">
-        <p>${p.title}</p>
-      `;
-      container.appendChild(card);
-    });
-  </script>
+<!-- Listeyi bas -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Hem window.* hem "çıplak" global isme karşı dayanıklı
+  const data =
+    (typeof furnitureProducts !== 'undefined') ? furnitureProducts :
+    (typeof window !== 'undefined' ? window.furnitureProducts : undefined);
 
-  <script src="include.js"></script>
+  if (!data || !Array.isArray(data)) {
+    const msg = 'furnitureProducts yüklenmedi. js/furniture.js yolu veya dosya içeriğini kontrol et.';
+    console.error(msg);
+    document.body.insertAdjacentHTML('beforeend', `<pre style="color:crimson">${msg}</pre>`);
+    return;
+  }
+
+  const container = document.getElementById('furniture-list');
+  container.innerHTML = '';
+  data.forEach(p => {
+    const card = document.createElement('a');
+    card.className = 'grid-item';
+    card.href = `product.html?cat=furniture&name=${p.id}`;
+    card.innerHTML = `
+      <img loading="lazy" src="images/pieces/furniture/${p.id}/${p.cover}" alt="${p.title}">
+      <p>${p.title}</p>
+    `;
+    container.appendChild(card);
+  });
+});
+</script>
+
+<script src="include.js"></script>
+
+
 </body>
 </html>
