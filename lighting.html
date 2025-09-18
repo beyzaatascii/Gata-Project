@@ -16,48 +16,32 @@
 </head>
 
 <body>
+  <div id="navbar-container"></div>
 
-    <!-- LOGO + MENU -->
-    <div id="navbar-container"></div>
+  <div class="wrapper">
+    <div class="grid-container" id="lighting-list"></div>
+  </div>
 
-    <section class="gallery-section">
-        <div class="gallery-grid">
-            <a href="product.html?name=era-chair" class="gallery-item">
-                <img src="images/1.jpg" alt="Era Chair">
-                <p>ERA CHAIR</p>
-            </a>
-            <a href="product.html?name=era-side-table" class="gallery-item">
-                <img src="images/2.jpg" alt="Era Chair">
-                <p>ERA SIDE TABLE</p>
-            </a>
-            <a href="product.html?name=" class="gallery-item">
-                <img src="images/3.jpg" alt="Era Coffee Table">
-                <p>ERA COFFEE TABLE</p>
-            </a>
-            <a href="#" class="gallery-item">
-                <img src="images/4.jpg" alt="Twin Chair">
-                <p>TWIN CHAIR</p>
-            </a>
-            <a href="#" class="gallery-item">
-                <img src="images/5.jpg" alt="Glass Cabinet">
-                <p>GLASS CABINET</p>
-            </a>
-            <a href="#" class="gallery-item">
-                <img src="images/6.jpg" alt="Silver Table">
-                <p>SILVER TABLE</p>
-            </a>
-            <a href="#" class="gallery-item">
-                <img src="images/7.jpg" alt="Square Unit">
-                <p>SQUARE UNIT</p>
-            </a>
-        </div>
-    </section>
+  <div id="footer-container"></div>
 
-    <!-- Footer -->
-    <div id="footer-container"></div>
+  <!-- Aydınlatma verileri -->
+  <script src="js/lighting.js"></script>
 
-    <script src="include.js"></script>
+  <!-- Listeleme -->
+  <script>
+    const container = document.getElementById("lighting-list");
+    lightingProducts.forEach(p => {
+      const card = document.createElement("a");
+      card.classList.add("grid-item");
+      card.href = `product.html?cat=lighting&name=${p.id}`;
+      card.innerHTML = `
+        <img src="images/pieces/lighting/${p.id}/${p.cover}" alt="${p.title}">
+        <p>${p.title}</p>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+
+  <script src="include.js"></script>
 </body>
-
-
 </html>

@@ -10,7 +10,7 @@
 .grid-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: flex-start; /* kartların üst hizası */
   gap: 40px;
   flex-wrap: nowrap;
 }
@@ -20,16 +20,19 @@
   text-decoration: none;
   color: #000000;
   transition: transform 0.3s;
-  width: 280px; /* Sabit genişlik */
+  width: 280px; /* sabit genişlik */
 }
 
 .grid-item img {
   width: 100%;
-  height: auto;
+  height: auto;           /* Oranı korusun */
+  object-fit: contain;    /* Kırpma yok */
   border-radius: 12px;
-  object-fit: cover;
+  background: #fff;       /* Boşluk kalırsa beyaz doldursun */
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  display: block;         /* Alt boşluk sorununu kaldırır */
 }
+
 
 .grid-item p {
   margin-top: 10px;
@@ -41,36 +44,38 @@
 .grid-item:hover {
   transform: scale(1.03);
 }
+
+/* Masaüstü için */
 @media screen and (min-width: 992px) {
   .logo-header {
     margin-bottom: -5rem; /* Menü altındaki boşluk azaltıldı */
   }
 
   .wrapper {
-    margin-top: 0; /* Üst boşluk minimumda */
+    margin-top: 0;
   }
 
   .grid-container {
-    gap: 2rem; /* Resimler arası boşluk azaltıldı */
+    gap: 2rem;
     padding-top: 1rem;
   }
 }
 
+/* Tablet için */
 @media screen and (min-width: 576px) and (max-width: 768px)  {
   .logo-header {
-    margin-bottom: 1rem; /* Menü altındaki boşluk azaltıldı */
+    margin-bottom: 1rem;
   }
 
   .wrapper {
-    margin-top: 0; /* Üst boşluk minimumda */
+    margin-top: 0;
   }
 
   .grid-container {
-    gap: 2rem; /* Resimler arası boşluk azaltıldı */
+    gap: 2rem;
     padding-top: 1rem;
   }
 }
-
 
 /* Mobil için */
 @media (max-width: 900px) {

@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mobilyalar | GATA DESIGN</title>
+    <title>Seramikler | GATA DESIGN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="icon" type="image/png" href="favicon.png" sizes="48x48">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="piece-gallery.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,23 +19,23 @@
   <div id="navbar-container"></div>
 
   <div class="wrapper">
-    <div class="grid-container" id="furniture-list"></div>
+    <div class="grid-container" id="ceramics-list"></div>
   </div>
 
   <div id="footer-container"></div>
 
-  <!-- Mobilya verileri -->
-  <script src="js/furniture.js"></script>
+  <!-- Seramik verileri -->
+  <script src="js/ceramics.js"></script>
 
-  <!-- Sayfada ürünleri listeleme -->
+  <!-- Listeleme -->
   <script>
-    const container = document.getElementById("furniture-list");
-    furnitureProducts.forEach(p => {
+    const container = document.getElementById("ceramics-list");
+    ceramicProducts.forEach(p => {
       const card = document.createElement("a");
       card.classList.add("grid-item");
-      card.href = `product.html?cat=furniture&name=${p.id}`;
+      card.href = `product.html?cat=ceramics&name=${p.id}`;
       card.innerHTML = `
-        <img src="images/pieces/furniture/${p.id}/${p.cover}" alt="${p.title}">
+        <img src="images/pieces/ceramics/${p.id}/${p.cover}" alt="${p.title}">
         <p>${p.title}</p>
       `;
       container.appendChild(card);
