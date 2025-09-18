@@ -27,7 +27,7 @@ body {
 /* SLIDER */
 .slider {
   position: relative;
-  margin: 2rem auto;
+  margin: 5.8rem auto;
   border-radius: 16px;
   overflow: hidden;
   max-width: 1000px;
@@ -48,43 +48,65 @@ body {
   position: relative; /* butonların konumu için gerekli */
 }
 
-.slider button{
+/* 1) HARD RESET – gri daireyi tamamen öldür */
+.slider .prev,
+.slider .next,
+.slider button,
+.slider > .prev,
+.slider > .next{
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-size: 0;  /* < veya > karakteri varsa gizle */
+  line-height: 0;
+}
+
+/* 2) Sadece chevron çiz – default siyah, hover'da beyaz */
+.slider{ position: relative; }
+
+.slider .prev,
+.slider .next{
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  padding: 12px 14px;         /* tıklanabilir alan */
-  background: transparent;
-  border: none;
+  padding: 12px 14px;      /* tıklanabilir alan */
+  color: #000;             /* normalde siyah */
   cursor: pointer;
-  color: #000;                /* ok rengi (currentColor) */
-  font-size: 0;               /* < veya > varsa gizle */
-  line-height: 0;
   z-index: 4;
-}
-
-.slider button:hover{
-  color: #fafafa;             /* istersen #000 bırakabilirsin */
-}
-
-.slider button::before{
-  content: "";
-  display: block;
-  width: 14px;
-  height: 14px;
-  border-left: 3px solid currentColor;
-  border-bottom: 3px solid currentColor;
-  transform: rotate(var(--rot));
-  transition: transform .15s ease, opacity .15s ease;
-  opacity: .9;
 }
 
 .slider .prev{ left: 10px;  --rot: 45deg; }      /* ‹ */
 .slider .next{ right: 10px; --rot: -135deg; }    /* › */
 
-.slider button:hover::before,
-.slider button:focus-visible::before{
+.slider .prev::before,
+.slider .next::before{
+  content: "";
+  display: block;
+  width: 14px; height: 14px;
+  border-left: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  transform: rotate(var(--rot));
+  transition: transform .15s ease, opacity .15s ease, color .15s;
+  opacity: .95;
+}
+
+/* hover'da sadece ok rengi beyaz olsun */
+.slider .prev:hover,
+.slider .next:hover{ color: #fff; }
+
+.slider .prev:hover::before,
+.slider .next:hover::before,
+.slider .prev:focus-visible::before,
+.slider .next:focus-visible::before{
   transform: rotate(var(--rot)) scale(1.12);
   opacity: 1;
+}
+
+/* mobilde okları biraz büyütmek istersen */
+@media (max-width: 500px){
+  .slider .prev, .slider .next{ padding: 16px 18px; }
+  .slider .prev::before, .slider .next::before{ width: 16px; height: 16px; }
 }
 
 
@@ -218,3 +240,23 @@ body {
 
 }
 
+/* --- ARROW HARD RESET: gri daireyi %100 iptal et --- */
+.slider > .prev,
+.slider > .next,
+.slider button.prev,
+.slider button.next{
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: 0;
+  font-size: 0;       /* içeride < veya > varsa gizle */
+  line-height: 0;
+}
+/* library/UA pseudo'ları varsa kapat */
+.slider > .prev::after,
+.slider > .next::after{
+  content: none !important;
+}
