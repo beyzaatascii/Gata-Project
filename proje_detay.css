@@ -32,7 +32,7 @@ body {
   margin: 5.8rem auto;
   border-radius: 16px;
   overflow: hidden;
-  max-width: 12c2c2cpx;
+  max-width: 1000px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -117,7 +117,7 @@ body {
 /* hover'da sadece ok rengi beyaz olsun */
 .slider .prev:hover,
 .slider .next:hover {
-  color: #fff;
+  color: #fafafa;
 }
 
 .slider .prev:hover::before,
@@ -148,7 +148,7 @@ body {
 .project-meta {
   text-align: center;
   margin: 2rem auto;
-  max-width: 12c2c2cpx;
+  max-width: 1000px;
 }
 
 .project-meta h2 {
