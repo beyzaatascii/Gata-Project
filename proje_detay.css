@@ -32,7 +32,7 @@ body {
   margin: 5.8rem auto;
   border-radius: 16px;
   overflow: hidden;
-  max-width: 1000px;
+  max-width: 12c2c2cpx;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -41,7 +41,7 @@ body {
 .slider img {
   width: 100%;
   max-height: 70vh;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 16px;
 }
 
@@ -69,10 +69,6 @@ body {
 /* 2) Sadece chevron çiz – default siyah, hover'da beyaz */
 .slider {
   position: relative;
-  overflow: hidden;
-  max-width: 1200px;
-  margin: 2rem auto;
-  border-radius: 16px;
 }
 
 .slider .prev,
@@ -100,7 +96,6 @@ body {
 }
 
 /* › */
-
 .slider .prev::before,
 .slider .next::before {
   content: "";
@@ -117,7 +112,7 @@ body {
 /* hover'da sadece ok rengi beyaz olsun */
 .slider .prev:hover,
 .slider .next:hover {
-  color: #fafafa;
+  color: #fff;
 }
 
 .slider .prev:hover::before,
@@ -143,12 +138,11 @@ body {
   }
 }
 
-
 /* PROJE METASI */
 .project-meta {
   text-align: center;
   margin: 2rem auto;
-  max-width: 1000px;
+  max-width: 12c2c2cpx;
 }
 
 .project-meta h2 {
@@ -259,13 +253,6 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  .slide img {
-    height: 320px;           /* 🔥 mobilde daha düşük yükseklik */
-  }
-}
-
-
 @media (max-width: 500px) {
   .info-content {
     padding: 1.2rem 1rem;
@@ -285,7 +272,6 @@ body {
   .container {
     margin-top: 80px;
   }
-
 }
 
 /* --- ARROW HARD RESET: gri daireyi %100 iptal et --- */
@@ -319,6 +305,7 @@ body {
   border-radius: 16px;
 }
 
+
 .slider-track {
   display: flex;
   transition: transform 0.5s ease;
@@ -340,6 +327,14 @@ body {
   border-radius: 16px;
   display: block;
 }
+
+@media (max-width: 768px) {
+  .slide img {
+    height: 350px;
+    /* 🔥 mobilde daha düşük yükseklik */
+  }
+}
+
 
 .slider button {
   position: absolute;
@@ -392,7 +387,6 @@ body {
   border-radius: 0;
   /* köşeler düz */
 }
-
 
 .lightbox .close-btn {
   position: absolute;

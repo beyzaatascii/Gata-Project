@@ -156,32 +156,3 @@
   };
 })();
 
-
-// --- SWIPE / TOUCH KAYDIRMA ---
-const sliderTrack = document.getElementById("sliderTrack");
-
-let startX = 0;
-let endX = 0;
-
-// Dokunma başlarken
-sliderTrack.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
-});
-
-// Parmağı kaydırırken sürekli çalışmaz, bitişte hesaplayacağız
-sliderTrack.addEventListener("touchend", (e) => {
-  endX = e.changedTouches[0].clientX;
-
-  let diff = endX - startX;
-
-  // minimum kaydırma mesafesi
-  if (Math.abs(diff) > 50) {
-    if (diff < 0) {
-      // sola kaydırma → sonraki slide
-      document.getElementById("nextBtn").click();
-    } else {
-      // sağa kaydırma → önceki slide
-      document.getElementById("prevBtn").click();
-    }
-  }
-});
