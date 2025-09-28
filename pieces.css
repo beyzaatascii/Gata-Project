@@ -18,7 +18,7 @@
 .grid-item {
   text-align: center;
   text-decoration: none;
-  color: #000000;
+  color: #2c2c2c;
   transition: transform 0.3s;
   width: 280px; /* sabit genişlik */
 }
@@ -43,6 +43,7 @@
 
 .grid-item:hover {
   transform: scale(1.03);
+  color: #999;
 }
 
 /* Masaüstü için */

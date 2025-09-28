@@ -15,7 +15,7 @@
 
 .project-item a {
   text-decoration: none;
-  color: black;
+  color: #2c2c2c;
 }
 
 .project-item a:hover p {
@@ -35,7 +35,7 @@
   margin-top: 1rem;
   font-size: 1.1rem;
   font-weight: 500;
-  color: #000000;
+  color: #2c2c2c;
   letter-spacing: 0.05em;
   transition: color 0.3s ease;
 }

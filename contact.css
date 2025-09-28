@@ -12,7 +12,7 @@
   padding-left: 2rem;
   padding-right: 2rem;
 
-  color: #333;
+  color: #2c2c2c;
   font-weight: 300;
   font-size: 1rem;
 }
@@ -24,7 +24,7 @@
 }
 
 .contact-content a {
-  color: #333; /* koyu siyah */
+  color: #2c2c2c; /* koyu siyah */
   font-weight: 600; /* kalın */
   text-decoration: none;
   font-size: 1.5rem;

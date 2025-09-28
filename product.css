@@ -185,7 +185,7 @@ html, body {
   color: white;
   cursor: pointer;
   font-weight: bold;
-  z-index: 10000;
+  z-index: 12c2c2c0;
 }
 
 /* Kart içinde görsel sarmalayıcı */
@@ -198,7 +198,7 @@ html, body {
   padding: 10px 18px;
   font-weight: 700;
   background: rgba(255,255,255,.92);
-  border: 1.5px solid #000;
+  border: 1.5px solid #2c2c2c;
   border-radius: 999px;
   cursor: pointer;
   box-shadow: 0 6px 18px rgba(0,0,0,.12);
@@ -247,7 +247,7 @@ html, body {
 .pi-table th{
   text-align: left; font-weight: 700; padding-right: 24px; white-space: nowrap;
 }
-.pi-table td{ color: #222; }
+.pi-table td{ color: #2c2c2c; }
 
 @media (max-width: 560px){
   .pi-table{ font-size: 1rem; }
@@ -299,7 +299,7 @@ html, body {
   white-space:nowrap;
   width: 140px;                    /* sabit etiket sütunu */
 }
-.meta-table td{ color:#222; }
+.meta-table td{ color:#2c2c2c; }
 
 @media (max-width: 540px){
   .meta-card{ width: 95%; padding:1rem; }
@@ -327,12 +327,12 @@ html, body {
   position: fixed; inset: 0;
   background: rgba(0,0,0,.45);
   backdrop-filter: blur(6px);
-  z-index: 10000;
+  z-index: 12c2c2c0;
 }
 .mm-dialog{
   position: fixed; inset: 0;
   display: grid; place-items: center;
-  z-index: 10001; /* lightbox'ın üstünde */
+  z-index: 12c2c2c1; /* lightbox'ın üstünde */
 }
 .mm-card{
   background:#fff;
@@ -354,9 +354,9 @@ html, body {
 }
 .pill-title:hover,
 .pill-title:focus-visible{
-  background:#000;
+  background:#2c2c2c;
   color:#fff;
-  border-color:#000;
+  border-color:#2c2c2c;
 }
 
 .detay-btn{
@@ -364,9 +364,9 @@ html, body {
 }
 .detay-btn:hover,
 .detay-btn:focus-visible{
-  background:#000;
+  background:#2c2c2c;
   color:#fff;
-  border-color:#000;
+  border-color:#2c2c2c;
   filter:none;            /* önceki brightness efektini iptal eder */
 }
 
@@ -383,13 +383,13 @@ html, body {
   padding: 0;
   font-size: 22px;
   line-height: 1;
-  color: #222;
+  color: #2c2c2c;
   cursor: pointer;
   opacity: .75;
   box-shadow: none;        /* eski yuvarlak butonu iptal */
   border-radius: 0;
 }
-.mm-close:hover{ opacity: 1; color:#000; }
+.mm-close:hover{ opacity: 1; color:#2c2c2c; }
 
 /* dokunmatiklerde biraz büyütelim */
 @media (pointer: coarse){

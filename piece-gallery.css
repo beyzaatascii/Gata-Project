@@ -21,7 +21,7 @@
     flex-direction: column;
     width: 100%;
     text-decoration: none;
-    color: #000;
+    color: #2c2c2c;
     transition: transform .25s ease, box-shadow .25s ease;
   }
 

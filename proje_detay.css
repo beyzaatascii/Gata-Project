@@ -7,8 +7,10 @@ body {
 /* Container (sayfa merkezi) */
 .container {
   max-width: 1200px;
-  margin: 60px auto;      /* ortalama */
-  padding: 0 1rem;        /* kenarlardan boşluk */
+  margin: 60px auto;
+  /* ortalama */
+  padding: 0 1rem;
+  /* kenarlardan boşluk */
   box-sizing: border-box;
 }
 
@@ -30,7 +32,7 @@ body {
   margin: 5.8rem auto;
   border-radius: 16px;
   overflow: hidden;
-  max-width: 1000px;
+  max-width: 12c2c2cpx;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -39,51 +41,72 @@ body {
 .slider img {
   width: 100%;
   max-height: 70vh;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 16px;
 }
 
 /* === SLIDER ARROWS: sade siyah chevron === */
-.slider{
-  position: relative; /* butonların konumu için gerekli */
+.slider {
+  position: relative;
+  /* butonların konumu için gerekli */
 }
 
 /* 1) HARD RESET – gri daireyi tamamen öldür */
 .slider .prev,
 .slider .next,
 .slider button,
-.slider > .prev,
-.slider > .next{
+.slider>.prev,
+.slider>.next {
   background: transparent !important;
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  font-size: 0;  /* < veya > karakteri varsa gizle */
+  font-size: 0;
+  /* < veya > karakteri varsa gizle */
   line-height: 0;
 }
 
 /* 2) Sadece chevron çiz – default siyah, hover'da beyaz */
-.slider{ position: relative; }
+.slider {
+  position: relative;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 2rem auto;
+  border-radius: 16px;
+}
 
 .slider .prev,
-.slider .next{
+.slider .next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  padding: 12px 14px;      /* tıklanabilir alan */
-  color: #000;             /* normalde siyah */
+  padding: 12px 14px;
+  /* tıklanabilir alan */
+  color: #2c2c2c;
+  /* normalde siyah */
   cursor: pointer;
   z-index: 4;
 }
 
-.slider .prev{ left: 10px;  --rot: 45deg; }      /* ‹ */
-.slider .next{ right: 10px; --rot: -135deg; }    /* › */
+.slider .prev {
+  left: 10px;
+  --rot: 45deg;
+}
+
+/* ‹ */
+.slider .next {
+  right: 10px;
+  --rot: -135deg;
+}
+
+/* › */
 
 .slider .prev::before,
-.slider .next::before{
+.slider .next::before {
   content: "";
   display: block;
-  width: 14px; height: 14px;
+  width: 14px;
+  height: 14px;
   border-left: 3px solid currentColor;
   border-bottom: 3px solid currentColor;
   transform: rotate(var(--rot));
@@ -93,20 +116,31 @@ body {
 
 /* hover'da sadece ok rengi beyaz olsun */
 .slider .prev:hover,
-.slider .next:hover{ color: #fff; }
+.slider .next:hover {
+  color: #fff;
+}
 
 .slider .prev:hover::before,
 .slider .next:hover::before,
 .slider .prev:focus-visible::before,
-.slider .next:focus-visible::before{
+.slider .next:focus-visible::before {
   transform: rotate(var(--rot)) scale(1.12);
   opacity: 1;
 }
 
 /* mobilde okları biraz büyütmek istersen */
-@media (max-width: 500px){
-  .slider .prev, .slider .next{ padding: 16px 18px; }
-  .slider .prev::before, .slider .next::before{ width: 16px; height: 16px; }
+@media (max-width: 500px) {
+
+  .slider .prev,
+  .slider .next {
+    padding: 16px 18px;
+  }
+
+  .slider .prev::before,
+  .slider .next::before {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 
@@ -114,7 +148,7 @@ body {
 .project-meta {
   text-align: center;
   margin: 2rem auto;
-  max-width: 1000px;
+  max-width: 12c2c2cpx;
 }
 
 .project-meta h2 {
@@ -137,13 +171,13 @@ body {
   border-radius: 20px;
   background: #fafafa;
   text-decoration: none;
-  color: #000;
+  color: #2c2c2c;
   font-weight: 500;
 }
 
 #infoBtn:hover {
   color: #fafafa;
-  background: #000;
+  background: #2c2c2c;
 }
 
 /* MODAL OVERLAY */
@@ -186,14 +220,21 @@ body {
   right: 1.5rem;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #333;
+  color: #2c2c2c;
   font-weight: bold;
 }
 
 /* Açılış animasyonu */
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* SATIR YAPISI */
@@ -206,7 +247,7 @@ body {
 
 .info-item strong {
   font-weight: 600;
-  color: #333;
+  color: #2c2c2c;
   flex: 0 0 120px;
 }
 
@@ -217,6 +258,13 @@ body {
     font-size: 1.05rem;
   }
 }
+
+@media (max-width: 768px) {
+  .slide img {
+    height: 320px;           /* 🔥 mobilde daha düşük yükseklik */
+  }
+}
+
 
 @media (max-width: 500px) {
   .info-content {
@@ -241,10 +289,10 @@ body {
 }
 
 /* --- ARROW HARD RESET: gri daireyi %100 iptal et --- */
-.slider > .prev,
-.slider > .next,
+.slider>.prev,
+.slider>.next,
 .slider button.prev,
-.slider button.next{
+.slider button.next {
   -webkit-appearance: none;
   appearance: none;
   background: transparent !important;
@@ -252,11 +300,129 @@ body {
   border-radius: 0 !important;
   box-shadow: none !important;
   outline: 0;
-  font-size: 0;       /* içeride < veya > varsa gizle */
+  font-size: 0;
+  /* içeride < veya > varsa gizle */
   line-height: 0;
 }
+
 /* library/UA pseudo'ları varsa kapat */
-.slider > .prev::after,
-.slider > .next::after{
+.slider>.prev::after,
+.slider>.next::after {
   content: none !important;
+}
+
+.slider {
+  position: relative;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 2rem auto;
+  border-radius: 16px;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slide {
+  min-width: 70%;
+  margin-right: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.slide img {
+  width: 100%;
+  height: 500px;
+  /* 🔥 tüm resimler için sabit yükseklik */
+  object-fit: cover;
+  /* 🔥 resimleri kırpmadan, hizalı şekilde kapla */
+  border-radius: 16px;
+  display: block;
+}
+
+.slider button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.prev {
+  left: 15px;
+}
+
+.next {
+  right: 15px;
+}
+
+/* 🔥 LIGHTBOX */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  flex-direction: column;
+}
+
+.lightbox.show {
+  display: flex;
+}
+
+.lightbox img {
+  width: 100vw;
+  /* ekran genişliğini tamamen kapla */
+  height: 100vh;
+  /* ekran yüksekliğini tamamen kapla */
+  object-fit: contain;
+  /* kırpılma olmasın, orantıyı koru */
+  border-radius: 0;
+  /* köşeler düz */
+}
+
+
+.lightbox .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 100000;
+}
+
+.lightbox button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 100000;
+}
+
+.lightbox .prev-lightbox {
+  left: 20px;
+}
+
+.lightbox .next-lightbox {
+  right: 20px;
 }

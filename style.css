@@ -51,7 +51,7 @@ html, body {
   align-items: center;
   font-size: 1rem;
   font-weight: 600;
-  color: #333;
+  color: #2c2c2c;
   cursor: pointer;
   transition: opacity 0.3s ease;
   margin-top: -1rem;
@@ -80,7 +80,7 @@ html, body {
 
 .dropdown-menu a {
   text-decoration: none;
-  color: #333;
+  color: #2c2c2c;
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.05em;
@@ -154,7 +154,7 @@ html, body {
 
 .footer-info p {
   font-size: 0.875rem;
-  color: #333;
+  color: #2c2c2c;
   margin: 0;
 }
 
@@ -165,7 +165,7 @@ html, body {
 
 .footer-links a {
   font-size: 0.875rem;
-  color: #333;
+  color: #2c2c2c;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -177,7 +177,7 @@ html, body {
 .footer-links i {
   margin-right: 0.5rem;
   font-size: 1rem;
-  color: #333;
+  color: #2c2c2c;
   transition: color 0.3s ease;
 }
 
