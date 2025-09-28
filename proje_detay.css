@@ -305,7 +305,6 @@ body {
   border-radius: 16px;
 }
 
-
 .slider-track {
   display: flex;
   transition: transform 0.5s ease;
@@ -320,21 +319,10 @@ body {
 
 .slide img {
   width: 100%;
-  height: 500px;
-  /* 🔥 tüm resimler için sabit yükseklik */
-  object-fit: cover;
-  /* 🔥 resimleri kırpmadan, hizalı şekilde kapla */
+  height: auto;
   border-radius: 16px;
   display: block;
 }
-
-@media (max-width: 768px) {
-  .slide img {
-    height: 350px;
-    /* 🔥 mobilde daha düşük yükseklik */
-  }
-}
-
 
 .slider button {
   position: absolute;
