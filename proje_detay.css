@@ -408,3 +408,33 @@ body {
 .lightbox .next-lightbox {
   right: 20px;
 }
+
+.slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    display: block;
+}
+
+.slide img {
+    width: 100%;
+    height: 500px;           /* 🔥 tüm resimler için sabit yükseklik */
+    object-fit: cover;       /* 🔥 resimleri kırpmadan, hizalı şekilde kapla */
+    border-radius: 16px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+  .slide img {
+    height: 320px;           /* 🔥 mobilde daha düşük yükseklik */
+  }
+}
+
+.slider {
+  position: relative;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 2rem auto;
+  border-radius: 16px;
+}
+
