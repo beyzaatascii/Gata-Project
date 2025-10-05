@@ -44,7 +44,8 @@
   extendedSlides.forEach(img => {
     const div = document.createElement("div");
     div.className = "slide";
-    div.innerHTML = `<img src="images/projects/${project.folder}/${img}" alt="${project.title}">`;
+    // `loading="eager"` korundu.
+    div.innerHTML = `<img src="images/projects/${project.folder}/${img}" alt="${project.title}" loading="eager">`; 
     track.appendChild(div);
   });
 
@@ -60,14 +61,18 @@
     const gap = parseFloat(getComputedStyle(track).gap || "0") || 0; 
     
     const w = first.getBoundingClientRect().width;
-    // Konsola değerleri basarak test edelim.
+    
+    if (w === 0 || gap === 0) {
+        console.warn("[CalcStep Hata] Genişlik veya boşluk sıfır. Hesaplama başarısız olabilir.");
+    }
+    
+    // Hata Ayıklama (Debug)
     console.log(`[calcStep] Slide Width (70%): ${w.toFixed(2)}px, Gap: ${gap}px, Step: ${(w + gap).toFixed(2)}px`);
     
     return w + gap; // Kart Genişliği + Gerçek CSS Boşluğu
   }
 
   function setTranslate(animated) {
-    // Animasyonu yavaşlattık (0.5s)
     track.style.transition = animated ? "transform 0.5s ease" : "none";
     track.style.transform  = `translateX(${-index * stepPx}px)`;
   }
@@ -77,13 +82,15 @@
     setTranslate(false); // anında doğru konuma al
   }
 
-  // 🔥 İLK YERLEŞİMİ setTimeout ile daha güvenilir hale getirdik
-  requestAnimationFrame(() => {
-    // 50ms gecikme vererek tarayıcının tüm resim boyutlarını ve flex düzenini hesaplamasını bekleriz.
+  // 🔥 YENİ ÇÖZÜM: İlk hesaplamayı pencere ve tüm resimler yüklendikten sonra (load)
+  // + 50ms daha bekleterek tarayıcı layout'unun oturmasını sağlıyoruz.
+  // Bu, GitHub Pages'teki zamanlama sorununu çözer.
+  window.addEventListener('load', () => {
+    // 50ms gecikme, tarayıcının son layout hesaplamasını tamamlaması için kritik
     setTimeout(() => {
         index = 1;
         recalcAndSnap();
-        console.log(`[Init] Başlangıç stepPx değeri: ${stepPx.toFixed(2)}`);
+        console.log(`[Init] Başlangıç stepPx değeri: ${stepPx.toFixed(2)} (Stabilizasyon sonrası hesaplandı)`);
     }, 50); 
   });
 
@@ -91,7 +98,10 @@
   window.addEventListener("resize", recalcAndSnap);
 
   function move(dir) {
-    if (isAnimating || !stepPx) return;
+    if (isAnimating || !stepPx) {
+        if (!stepPx) console.warn("[Move] StepPx sıfır. Hesaplama yapılmadı.");
+        return;
+    }
     isAnimating = true;
     index += (dir === "next" ? 1 : -1);
     setTranslate(true);
