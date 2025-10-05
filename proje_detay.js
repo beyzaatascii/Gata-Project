@@ -91,7 +91,7 @@
         index = 1;
         recalcAndSnap();
         console.log(`[Init] Başlangıç stepPx değeri: ${stepPx.toFixed(2)} (Stabilizasyon sonrası hesaplandı)`);
-    }, 50); 
+    }, 250); 
   });
 
   // responsive
