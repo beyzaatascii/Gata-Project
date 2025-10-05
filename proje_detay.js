@@ -55,12 +55,19 @@
   function calcStep() {
     const first = track.querySelector(".slide");
     if (!first) return 0;
-    const gap = parseFloat(getComputedStyle(track).gap || "0") || 0;
+    
+    // CSS'ten okuma: CSS'teki 'gap: 10px;' kuralını otomatik okuyoruz.
+    const gap = parseFloat(getComputedStyle(track).gap || "0") || 0; 
+    
     const w = first.getBoundingClientRect().width;
-    return w + gap;
+    // Konsola değerleri basarak test edelim.
+    console.log(`[calcStep] Slide Width (70%): ${w.toFixed(2)}px, Gap: ${gap}px, Step: ${(w + gap).toFixed(2)}px`);
+    
+    return w + gap; // Kart Genişliği + Gerçek CSS Boşluğu
   }
 
   function setTranslate(animated) {
+    // Animasyonu yavaşlattık (0.5s)
     track.style.transition = animated ? "transform 0.5s ease" : "none";
     track.style.transform  = `translateX(${-index * stepPx}px)`;
   }
@@ -70,10 +77,14 @@
     setTranslate(false); // anında doğru konuma al
   }
 
-  // ilk yerleşim
+  // 🔥 İLK YERLEŞİMİ setTimeout ile daha güvenilir hale getirdik
   requestAnimationFrame(() => {
-    index = 1;
-    recalcAndSnap();
+    // 50ms gecikme vererek tarayıcının tüm resim boyutlarını ve flex düzenini hesaplamasını bekleriz.
+    setTimeout(() => {
+        index = 1;
+        recalcAndSnap();
+        console.log(`[Init] Başlangıç stepPx değeri: ${stepPx.toFixed(2)}`);
+    }, 50); 
   });
 
   // responsive
@@ -84,6 +95,8 @@
     isAnimating = true;
     index += (dir === "next" ? 1 : -1);
     setTranslate(true);
+    // Konsola güncel index ve kayma miktarını basalım
+    console.log(`[Move] Index: ${index}, Extended Length: ${extendedSlides.length}, Translate: ${(-index * stepPx).toFixed(2)}px`);
   }
 
   btnNext?.addEventListener("click", () => move("next"));
@@ -97,12 +110,14 @@
   track.addEventListener("transitionend", (e) => {
     if (e.propertyName !== "transform") return;
 
-    if (index === extendedSlides.length - 1) { // en sondaki clone
-      index = 1;                                // ilk gerçek
+    if (index === extendedSlides.length - 1) { // en sondaki clone (index N+1)
+      index = 1;                                // ilk gerçek (index 1)
       setTranslate(false);
-    } else if (index === 0) {                   // en baştaki clone
-      index = extendedSlides.length - 2;        // son gerçek
+      console.log(`[Loop] Reset: Index ${extendedSlides.length - 1} -> 1 (İleri Döngü)`);
+    } else if (index === 0) {                   // en baştaki clone (index 0)
+      index = extendedSlides.length - 2;        // son gerçek (index N)
       setTranslate(false);
+      console.log(`[Loop] Reset: Index 0 -> ${extendedSlides.length - 2} (Geri Döngü)`);
     }
     isAnimating = false;
   });
@@ -155,4 +170,3 @@
     document.getElementById("infoModal")?.classList.toggle("show");
   };
 })();
-

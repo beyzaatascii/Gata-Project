@@ -1,101 +1,80 @@
-/* BODY */
+/* === GENEL === */
 body {
   margin: 0;
   padding: 0;
 }
 
-/* Container (sayfa merkezi) */
 .container {
   max-width: 1200px;
   margin: 60px auto;
-  /* ortalama */
   padding: 0 1rem;
-  /* kenarlardan boşluk */
   box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
-  .container {
-    padding: 0 2rem;
-  }
+  .container { padding: 0 2rem; }
 }
 
 @media (min-width: 1200px) {
-  .container {
-    padding: 0;
-  }
+  .container { padding: 0; }
 }
 
-/* SLIDER */
+/* === SLIDER === */
 .slider {
   position: relative;
-  margin: 5.8rem auto;
-  border-radius: 16px;
   overflow: hidden;
-  max-width: 1000px;
-  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  border-radius: 16px;
   display: flex;
   justify-content: center;
 }
 
-.slider img {
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 10px;
+}
+
+.slide {
+  min-width: 70%;
+  flex-shrink: 0;
+  cursor: pointer;
+  margin-right: 0;
+}
+
+.slide img {
   width: 100%;
-  max-height: 70vh;
-  object-fit: cover;
+  height: 500px;          /* sabit yükseklik */
+  object-fit: cover;      /* orantılı kırpma */
   border-radius: 16px;
+  display: block;
 }
 
-/* === SLIDER ARROWS: sade siyah chevron === */
-.slider {
-  position: relative;
-  /* butonların konumu için gerekli */
+@media (max-width: 768px) {
+  .slide img { height: 320px; }
 }
 
-/* 1) HARD RESET – gri daireyi tamamen öldür */
-.slider .prev,
-.slider .next,
+/* === SLIDER OKLARI === */
 .slider button,
-.slider>.prev,
-.slider>.next {
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  font-size: 0;
-  /* < veya > karakteri varsa gizle */
-  line-height: 0;
-}
-
-/* 2) Sadece chevron çiz – default siyah, hover'da beyaz */
-.slider {
-  position: relative;
-}
-
 .slider .prev,
 .slider .next {
+  all: unset;             /* tüm default stilleri sıfırla */
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   padding: 12px 14px;
-  /* tıklanabilir alan */
   color: #2c2c2c;
-  /* normalde siyah */
   cursor: pointer;
   z-index: 4;
 }
 
-.slider .prev {
-  left: 10px;
-  --rot: 45deg;
-}
+/* library pseudo’ları kapat */
+.slider button::after { content: none !important; }
 
-/* ‹ */
-.slider .next {
-  right: 10px;
-  --rot: -135deg;
-}
+.slider .prev { left: 10px; --rot: 45deg; }
+.slider .next { right: 10px; --rot: -135deg; }
 
-/* › */
 .slider .prev::before,
 .slider .next::before {
   content: "";
@@ -109,53 +88,30 @@ body {
   opacity: .95;
 }
 
-/* hover'da sadece ok rengi beyaz olsun */
 .slider .prev:hover,
-.slider .next:hover {
-  color: #fff;
-}
+.slider .next:hover { color: #fff; }
 
 .slider .prev:hover::before,
-.slider .next:hover::before,
-.slider .prev:focus-visible::before,
-.slider .next:focus-visible::before {
+.slider .next:hover::before {
   transform: rotate(var(--rot)) scale(1.12);
   opacity: 1;
 }
 
-/* mobilde okları biraz büyütmek istersen */
 @media (max-width: 500px) {
-
-  .slider .prev,
-  .slider .next {
-    padding: 16px 18px;
-  }
-
-  .slider .prev::before,
-  .slider .next::before {
-    width: 16px;
-    height: 16px;
-  }
+  .slider .prev, .slider .next { padding: 16px 18px; }
+  .slider .prev::before, .slider .next::before { width: 16px; height: 16px; }
 }
 
-/* PROJE METASI */
+/* === PROJE METASI === */
 .project-meta {
   text-align: center;
   margin: 2rem auto;
   max-width: 1000px;
 }
+.project-meta h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+.project-meta p  { font-size: 1rem; color: #777; }
 
-.project-meta h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.project-meta p {
-  font-size: 1rem;
-  color: #777;
-}
-
-/* INFO BUTONU */
+/* === INFO BUTONU === */
 #infoBtn {
   display: block;
   margin: 1.5rem auto;
@@ -164,277 +120,112 @@ body {
   cursor: pointer;
   border-radius: 20px;
   background: #fafafa;
-  text-decoration: none;
   color: #2c2c2c;
   font-weight: 500;
+  text-decoration: none;
 }
+#infoBtn:hover { color: #fafafa; background: #2c2c2c; }
 
-#infoBtn:hover {
-  color: #fafafa;
-  background: #2c2c2c;
-}
-
-/* MODAL OVERLAY */
+/* === MODAL === */
 .info-modal {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
+  width: 100vw; height: 100vh;
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   justify-content: center;
   align-items: center;
   z-index: 9999;
 }
+.info-modal.show { display: flex; }
 
-.info-modal.show {
-  display: flex;
-}
-
-/* MODAL CONTENT */
 .info-content {
   background: #fff;
   padding: 2rem;
   border-radius: 16px;
-  max-width: 600px;
-  width: 90%;
+  max-width: 600px; width: 90%;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   text-align: left;
   position: relative;
   animation: fadeIn 0.3s ease;
 }
 
-/* CLOSE BUTTON */
 .info-content .close-btn {
   position: absolute;
-  top: 1rem;
-  right: 1.5rem;
+  top: 1rem; right: 1.5rem;
   font-size: 1.5rem;
   cursor: pointer;
   color: #2c2c2c;
   font-weight: bold;
 }
 
-/* Açılış animasyonu */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
-/* SATIR YAPISI */
 .info-item {
   display: flex;
-  justify-content: flex-start;
   margin: 0.6rem 0;
   font-size: 0.95rem;
 }
-
 .info-item strong {
+  flex: 0 0 120px;
   font-weight: 600;
   color: #2c2c2c;
-  flex: 0 0 120px;
 }
 
 @media (min-width: 900px) {
-  .info-content {
-    max-width: 700px;
-    padding: 2.5rem;
-    font-size: 1.05rem;
-  }
+  .info-content { max-width: 700px; padding: 2.5rem; font-size: 1.05rem; }
 }
-
 @media (max-width: 500px) {
-  .info-content {
-    padding: 1.2rem 1rem;
-    width: 95%;
-    max-width: 95%;
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
-  }
-
-  .info-item {
-    font-size: 0.9rem;
-  }
-
-  .info-item strong {
-    font-size: 0.95rem;
-  }
-
-  .container {
-    margin-top: 80px;
-  }
+  .info-content { padding: 1.2rem 1rem; width: 95%; box-shadow: 0 12px 20px rgba(0,0,0,0.25); }
+  .info-item { font-size: 0.9rem; }
+  .info-item strong { font-size: 0.95rem; }
+  .container { margin-top: 80px; }
 }
 
-/* --- ARROW HARD RESET: gri daireyi %100 iptal et --- */
-.slider>.prev,
-.slider>.next,
-.slider button.prev,
-.slider button.next {
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  outline: 0;
-  font-size: 0;
-  /* içeride < veya > varsa gizle */
-  line-height: 0;
-}
-
-/* library/UA pseudo'ları varsa kapat */
-.slider>.prev::after,
-.slider>.next::after {
-  content: none !important;
-}
-
-.slider {
-  position: relative;
-  overflow: hidden;
-  max-width: 1200px;
-  margin: 2rem auto;
-  border-radius: 16px;
-}
-
-.slider-track {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-.slide {
-  min-width: 70%;
-  margin-right: 10px;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-.slide img {
-  width: 100%;
-  height: auto;
-  border-radius: 16px;
-  display: block;
-}
-
-.slider button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2rem;
-  background: rgba(0, 0, 0, 0.5);
-  border: none;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 50%;
-  z-index: 10;
-}
-
-.prev {
-  left: 15px;
-}
-
-.next {
-  right: 15px;
-}
-
-/* 🔥 LIGHTBOX */
+/* === LIGHTBOX === */
 .lightbox {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.9);
+  inset: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.9);
   justify-content: center;
   align-items: center;
   z-index: 99999;
   flex-direction: column;
 }
-
-.lightbox.show {
-  display: flex;
-}
+.lightbox.show { display: flex; }
 
 .lightbox img {
-  width: 100vw;
-  /* ekran genişliğini tamamen kapla */
-  height: 100vh;
-  /* ekran yüksekliğini tamamen kapla */
+  width: 100vw; height: 100vh;
   object-fit: contain;
-  /* kırpılma olmasın, orantıyı koru */
   border-radius: 0;
-  /* köşeler düz */
 }
 
 .lightbox .close-btn {
   position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 2rem;
-  color: #fff;
-  cursor: pointer;
-  font-weight: bold;
+  top: 20px; right: 30px;
+  font-size: 2rem; color: #fff;
+  cursor: pointer; font-weight: bold;
   z-index: 100000;
 }
 
 .lightbox button {
+  all: unset;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   font-size: 2rem;
   background: rgba(0, 0, 0, 0.5);
-  border: none;
   color: #fff;
   padding: 0.5rem 1rem;
   cursor: pointer;
   border-radius: 50%;
   z-index: 100000;
 }
-
-.lightbox .prev-lightbox {
-  left: 20px;
-}
-
-.lightbox .next-lightbox {
-  right: 20px;
-}
-
-.slide img {
-    width: 100%;
-    height: auto;
-    border-radius: 16px;
-    display: block;
-}
-
-.slide img {
-    width: 100%;
-    height: 500px;           /* 🔥 tüm resimler için sabit yükseklik */
-    object-fit: cover;       /* 🔥 resimleri kırpmadan, hizalı şekilde kapla */
-    border-radius: 16px;
-    display: block;
-}
-
-@media (max-width: 768px) {
-  .slide img {
-    height: 320px;           /* 🔥 mobilde daha düşük yükseklik */
-  }
-}
-
-.slider {
-  position: relative;
-  overflow: hidden;
-  max-width: 1200px;
-  margin: 2rem auto;
-  border-radius: 16px;
-}
-
+.lightbox .prev-lightbox { left: 20px; }
+.lightbox .next-lightbox { right: 20px; }
