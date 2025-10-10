@@ -2,6 +2,7 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: "Montserrat", sans-serif;
 }
 
 .container {
@@ -12,17 +13,22 @@ body {
 }
 
 @media (min-width: 768px) {
-  .container { padding: 0 2rem; }
+  .container {
+    padding: 0 2rem;
+  }
 }
 
 @media (min-width: 1200px) {
-  .container { padding: 0; }
+  .container {
+    padding: 0;
+  }
 }
 
 /* === SLIDER === */
 .slider {
   position: relative;
   overflow: hidden;
+  width: 100%;
   max-width: 1200px;
   margin: 2rem auto;
   border-radius: 16px;
@@ -40,26 +46,45 @@ body {
   min-width: 70%;
   flex-shrink: 0;
   cursor: pointer;
-  margin-right: 0;
 }
 
 .slide img {
   width: 100%;
-  height: 500px;          /* sabit yükseklik */
-  object-fit: cover;      /* orantılı kırpma */
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
   border-radius: 16px;
   display: block;
 }
 
+/* === RESPONSIVE SLIDER === */
+@media (max-width: 1024px) {
+  .slide {
+    min-width: 85%;
+  }
+}
+
 @media (max-width: 768px) {
-  .slide img { height: 320px; }
+  .slide {
+    min-width: 95%;
+  }
+  .slide img {
+    max-height: 340px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide img {
+    max-height: 260px;
+    border-radius: 12px;
+  }
 }
 
 /* === SLIDER OKLARI === */
 .slider button,
 .slider .prev,
 .slider .next {
-  all: unset;             /* tüm default stilleri sıfırla */
+  all: unset;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -67,11 +92,18 @@ body {
   color: #2c2c2c;
   cursor: pointer;
   z-index: 4;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  transition: background 0.3s ease;
 }
 
-/* library pseudo’ları kapat */
-.slider button::after { content: none !important; }
+.slider .prev:hover,
+.slider .next:hover {
+  background: #2c2c2c;
+  color: #fff;
+}
 
+/* pseudo arrows */
 .slider .prev { left: 10px; --rot: 45deg; }
 .slider .next { right: 10px; --rot: -135deg; }
 
@@ -84,22 +116,16 @@ body {
   border-left: 3px solid currentColor;
   border-bottom: 3px solid currentColor;
   transform: rotate(var(--rot));
-  transition: transform .15s ease, opacity .15s ease, color .15s;
-  opacity: .95;
 }
 
-.slider .prev:hover,
-.slider .next:hover { color: #fff; }
-
-.slider .prev:hover::before,
-.slider .next:hover::before {
-  transform: rotate(var(--rot)) scale(1.12);
-  opacity: 1;
-}
-
-@media (max-width: 500px) {
-  .slider .prev, .slider .next { padding: 16px 18px; }
-  .slider .prev::before, .slider .next::before { width: 16px; height: 16px; }
+@media (max-width: 600px) {
+  .slider .prev, .slider .next {
+    padding: 10px 12px;
+  }
+  .slider .prev::before, .slider .next::before {
+    width: 10px;
+    height: 10px;
+  }
 }
 
 /* === PROJE METASI === */
@@ -107,9 +133,16 @@ body {
   text-align: center;
   margin: 2rem auto;
   max-width: 1000px;
+  padding: 0 1rem;
 }
-.project-meta h2 { font-size: 2rem; margin-bottom: 0.5rem; }
-.project-meta p  { font-size: 1rem; color: #777; }
+.project-meta h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  margin-bottom: 0.5rem;
+}
+.project-meta p {
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  color: #777;
+}
 
 /* === INFO BUTONU === */
 #infoBtn {
@@ -123,28 +156,37 @@ body {
   color: #2c2c2c;
   font-weight: 500;
   text-decoration: none;
+  border: 1px solid #2c2c2c;
+  transition: all 0.3s ease;
 }
-#infoBtn:hover { color: #fafafa; background: #2c2c2c; }
+#infoBtn:hover {
+  color: #fafafa;
+  background: #2c2c2c;
+}
 
 /* === MODAL === */
 .info-modal {
   display: none;
   position: fixed;
   inset: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(8px);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
   justify-content: center;
   align-items: center;
   z-index: 9999;
 }
-.info-modal.show { display: flex; }
+.info-modal.show {
+  display: flex;
+}
 
 .info-content {
   background: #fff;
   padding: 2rem;
   border-radius: 16px;
-  max-width: 600px; width: 90%;
+  max-width: 600px;
+  width: 90%;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   text-align: left;
   position: relative;
@@ -153,7 +195,8 @@ body {
 
 .info-content .close-btn {
   position: absolute;
-  top: 1rem; right: 1.5rem;
+  top: 1rem;
+  right: 1.5rem;
   font-size: 1.5rem;
   cursor: pointer;
   color: #2c2c2c;
@@ -161,12 +204,19 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .info-item {
   display: flex;
+  flex-wrap: wrap;
   margin: 0.6rem 0;
   font-size: 0.95rem;
 }
@@ -176,14 +226,19 @@ body {
   color: #2c2c2c;
 }
 
-@media (min-width: 900px) {
-  .info-content { max-width: 700px; padding: 2.5rem; font-size: 1.05rem; }
-}
-@media (max-width: 500px) {
-  .info-content { padding: 1.2rem 1rem; width: 95%; box-shadow: 0 12px 20px rgba(0,0,0,0.25); }
-  .info-item { font-size: 0.9rem; }
-  .info-item strong { font-size: 0.95rem; }
-  .container { margin-top: 80px; }
+/* Modal responsive tweaks */
+@media (max-width: 700px) {
+  .info-content {
+    width: 92%;
+    padding: 1.2rem 1rem;
+  }
+  .info-item {
+    font-size: 0.9rem;
+    flex-direction: column;
+  }
+  .info-item strong {
+    margin-bottom: 0.3rem;
+  }
 }
 
 /* === LIGHTBOX === */
@@ -191,26 +246,34 @@ body {
   display: none;
   position: fixed;
   inset: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.9);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
   justify-content: center;
   align-items: center;
   z-index: 99999;
   flex-direction: column;
 }
-.lightbox.show { display: flex; }
+.lightbox.show {
+  display: flex;
+}
 
 .lightbox img {
-  width: 100vw; height: 100vh;
+  width: 100%;
+  max-width: 95vw;
+  max-height: 85vh;
   object-fit: contain;
   border-radius: 0;
 }
 
 .lightbox .close-btn {
   position: absolute;
-  top: 20px; right: 30px;
-  font-size: 2rem; color: #fff;
-  cursor: pointer; font-weight: bold;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
   z-index: 100000;
 }
 
@@ -227,5 +290,22 @@ body {
   border-radius: 50%;
   z-index: 100000;
 }
-.lightbox .prev-lightbox { left: 20px; }
-.lightbox .next-lightbox { right: 20px; }
+
+.lightbox .prev-lightbox {
+  left: 20px;
+}
+.lightbox .next-lightbox {
+  right: 20px;
+}
+
+@media (max-width: 600px) {
+  .lightbox img {
+    max-width: 100vw;
+    max-height: 75vh;
+  }
+  .lightbox .close-btn {
+    top: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+  }
+}
