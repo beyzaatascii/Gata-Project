@@ -1,20 +1,69 @@
+/* ====================================
+   Genel Stil Tanımları
+   ==================================== */
+
+:root {
+  --primary-color: #2c2c2c;
+  --secondary-color: #999;
+  --bg-color: #fafafa;
+  --bg-white: #fff;
+  --box-shadow-light: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --box-shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.15);
+  --box-shadow-heavy: 0 18px 45px rgba(0, 0, 0, 0.12);
+  --border-radius: 12px;
+}
+
+/* Tüm sayfalarda aynı olacak genel etiket stilleri */
 body {
   margin: 0;
   padding: 0;
-  background-color: #fafafa;
+  background-color: var(--bg-color);
   font-family: 'Montserrat', sans-serif;
+  color: var(--primary-color);
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
   width: 100%;
-  height: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
+/* Genel bağlantı stilleri */
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
 
-/* LOGO + MENU ICON YAPISI */
+a:hover {
+  color: var(--secondary-color);
+}
+
+/* ====================================
+   Genel Yerleşim ve Bileşenler
+   ==================================== */
+
+/* Sayfa içeriğini ortalayan ana sarmalayıcı */
+.container,
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    padding: 0;
+  }
+}
+
+/* Logolu başlık ve menü */
 .logo-header {
   padding: 1.5rem 0;
   display: flex;
@@ -27,10 +76,10 @@ html, body {
 }
 
 .header-logo {
-  margin-top: -1.5rem;
   width: 140px;
   max-width: 100%;
   height: auto;
+  margin-top: -1.5rem;
 }
 
 .logo {
@@ -40,16 +89,16 @@ html, body {
   display: block;
 }
 
-/* Menü */
+/* Menü ikonu ve dropdown */
 .menu-icon {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   font-size: 1rem;
   font-weight: 600;
-  color: #2c2c2c;
+  color: var(--primary-color);
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.2s ease;
   margin-top: 1rem;
   margin-bottom: -4rem;
 }
@@ -57,7 +106,6 @@ html, body {
 .menu-icon:hover {
   opacity: 0.6;
   transform: scale(1.1);
-  transition: all 0.2s ease-in-out;
 }
 
 .dropdown-menu {
@@ -76,7 +124,7 @@ html, body {
 
 .dropdown-menu a {
   text-decoration: none;
-  color: #2c2c2c;
+  color: var(--primary-color);
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.05em;
@@ -84,61 +132,17 @@ html, body {
 }
 
 .dropdown-menu a:hover {
-  color: #999;
+  color: var(--secondary-color);
   transform: translateX(2px);
-}
-
-/* --- EKRAN BOYUTUNA GÖRE DÜZENLEME --- */
-@media (min-width: 992px) {
-  .dropdown-menu {
-    flex-wrap: nowrap;
-    gap: 6rem;
-  }
-
-  .dropdown-menu a {
-    flex: 0 0 auto;
-  }
-
-   .dropdown-menu {
-    flex-direction: row;
-    gap: 6rem;
-    padding: 1rem 0;   /* 🔥 masaüstünde daha ince boşluk */
-  }
-}
-
-@media (min-width: 576px) and (max-width: 768px) {
-  .dropdown-menu {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem 4rem;
-  }
-
-  .dropdown-menu a {
-    flex: 0 1 40%;
-  }
-}
-
-@media (max-width: 576px) {
-  .dropdown-menu {
-    flex-direction: column;
-    gap: 0.5rem;
-    padding-bottom: 20px;
-  }
-
-  .dropdown-menu a {
-    width: 100%;
-    padding: 0.3rem 0;
-  }
 }
 
 /* Footer */
 .footer {
-  background-color: #fafafa;
+  background-color: var(--bg-color);
   padding: 0.8rem 3rem;
   text-align: center;
-  border-top: 1px solid;
+  border-top: 1px solid transparent;
   margin-top: 3rem;
-  border-style: none;
 }
 
 .footer-container {
@@ -150,7 +154,7 @@ html, body {
 
 .footer-info p {
   font-size: 0.875rem;
-  color: #2c2c2c;
+  color: var(--primary-color);
   margin: 0;
 }
 
@@ -161,24 +165,22 @@ html, body {
 
 .footer-links a {
   font-size: 0.875rem;
-  color: #2c2c2c;
+  color: var(--primary-color);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-  color: #999;
+  color: var(--secondary-color);
 }
 
 .footer-links i {
   margin-right: 0.5rem;
   font-size: 1rem;
-  color: #2c2c2c;
+  color: var(--primary-color);
   transition: color 0.3s ease;
 }
 
 .footer-links a:hover i {
-  color: #999;
+  color: var(--secondary-color);
 }
-
-

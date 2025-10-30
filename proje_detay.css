@@ -34,6 +34,8 @@ body {
   border-radius: 16px;
   display: flex;
   justify-content: center;
+  /* iOS uyumluluğu için eklenmiştir */
+  -webkit-overflow-scrolling: touch; 
 }
 
 .slider-track {
@@ -42,9 +44,9 @@ body {
   gap: 10px;
 }
 
+/* DÜZELTME: min-width yerine flex-basis kullanıldı */
 .slide {
-  min-width: 70%;
-  flex-shrink: 0;
+  flex: 0 0 70%; 
   cursor: pointer;
 }
 
@@ -59,14 +61,16 @@ body {
 
 /* === RESPONSIVE SLIDER === */
 @media (max-width: 1024px) {
+  /* DÜZELTME: min-width yerine flex-basis kullanıldı */
   .slide {
-    min-width: 85%;
+    flex: 0 0 85%;
   }
 }
 
 @media (max-width: 768px) {
+  /* DÜZELTME: min-width yerine flex-basis kullanıldı */
   .slide {
-    min-width: 95%;
+    flex: 0 0 95%;
   }
   .slide img {
     max-height: 340px;
