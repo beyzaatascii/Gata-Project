@@ -39,30 +39,42 @@ html, body {
 }
 
 /* SLIDER YAPISI */
-.image-slider-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-}
-
+/* SLIDER YAPISI (Mevcut koda ekleyin/güncelleyin) */
 .image-slider {
   display: flex;
   gap: 1rem;
-  transition: transform 0.3s ease-in-out;
-  overflow: hidden;
+  overflow-x: auto; /* Parmakla yatay kaydırmayı açar */
   scroll-behavior: smooth;
   width: 100%;
+  
+  /* --- Parmakla Kaydırma ve Yapışma (Swipe & Snap) --- */
+  scroll-snap-type: x mandatory; /* Yatayda kaydırmayı zorunlu yapıştırır */
+  -webkit-overflow-scrolling: touch; /* iOS'ta pürüzsüz kaydırma sağlar */
 }
 
 .image-slider::-webkit-scrollbar {
-  display: none;
+  display: none; /* Kaydırma çubuğunu gizle */
 }
 
+/* Her bir slide */
 .slide {
-  flex: 0 0 33%;
+  flex: 0 0 calc(33.33% - 11px); /* Masaüstü 3'lü */
   transition: transform 0.3s ease;
+  
+  /* --- Parmakla Kaydırma ve Yapışma (Snap) --- */
+  scroll-snap-align: start; /* Slide kayarken neresinden yapışacağını belirler */
+}
+
+/* MOBİL ÖZEL AYARI (Ekran genişliği 768px'den küçükse) */
+@media (max-width: 768px) {
+  .slide {
+    flex: 0 0 80%; /* Mobilde her resim ekranın %80'ini kaplar */
+    /* Bir sonraki resmin ucunun görünmesini sağlar */
+  }
+  
+  /* Mobilde okları içeriye alabilirsin veya gizleyebilirsin */
+  #prev { left: 5px; }
+  #next { right: 5px; }
 }
 
 .slide img {
@@ -80,6 +92,9 @@ html, body {
 @media (max-width: 768px) {
   .slide {
     flex: 0 0 80%;
+  }
+  .arrow {
+    display: none !important; /* Okları tamamen ortadan kaldırır */
   }
 }
 
@@ -153,30 +168,67 @@ html, body {
 
 /* TAM EKRAN GÖRSEL (LIGHTBOX) */
 .lightbox {
-  position: fixed;
+  position: fixed !important; /* Sayfa akışından tamamen kopar */
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.9);
-  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: none; /* Varsayılan gizli */
+  
+  /* MERKEZLEME BÜYÜSÜ */
   justify-content: center;
   align-items: center;
-  z-index: 9999;
-  padding: 2rem;
+  
+  z-index: 999999; /* En üstte olduğundan emin olalım */
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .lightbox.show {
-  display: flex;
+  display: flex !important; /* JS show ekleyince flex ile ortalar */
 }
 
 .lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 12px;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+  max-width: 100%;
+  max-height: 80vh; /* Mobilde alt/üst boşluk kalması için */
+  object-fit: contain; /* Resmin oranını asla bozmaz */
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  
+  /* Mobilde daha akıcı bir geçiş için */
+  animation: lightboxFade 0.3s ease-out;
 }
 
+/* Kapatma Butonu (Sağ Üstte Sabit) */
+.close-btn {
+  position: absolute;
+  top: env(safe-area-inset-top, 20px); /* iPhone çentiği için koruma */
+  right: 20px;
+  font-size: 45px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1000000;
+  line-height: 1;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+@keyframes lightboxFade {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* MOBİL ÖZEL AYARI (Ekran genişliği 768px'den küçükse) */
+@media (max-width: 768px) {
+  .lightbox {
+    padding: 5px;
+  }
+  
+  .lightbox img {
+    max-width: 98%;
+    max-height: 80vh; /* Mobilde alt/üst boşluk kalsın */
+  }
+}
 .close-btn {
   position: absolute;
   top: 2rem;

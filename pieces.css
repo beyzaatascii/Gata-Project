@@ -1,93 +1,90 @@
+/* Genel Kapsayıcı */
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  gap: 2rem;
   padding: 3rem 1rem;
 }
 
+/* Kartların Yan Yana Dizildiği Alan */
 .grid-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* kartların üst hizası */
+  align-items: flex-start;
   gap: 40px;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap; /* Masaüstünde yan yana kalması için */
 }
 
+/* Her Bir Kart */
 .grid-item {
   text-align: center;
   text-decoration: none;
   color: #2c2c2c;
-  transition: transform 0.3s;
-  width: 280px; /* sabit genişlik */
+  transition: transform 0.3s ease;
+  width: 280px; /* Kart genişliği sabit */
 }
 
+/* RESİMLERİ AYNI BOYUT YAPAN KRİTİK ALAN */
 .grid-item img {
   width: 100%;
-  height: auto;           /* Oranı korusun */
-  object-fit: contain;    /* Kırpma yok */
+  aspect-ratio: 1 / 1;      /* Resimleri kare yapar. Dikdörtgen için 3/4 veya 4/5 yapabilirsin */
+  object-fit: cover;        /* Resim farklı orandaysa bozulmadan kutuyu doldurur */
   border-radius: 12px;
-  background: #fff;       /* Boşluk kalırsa beyaz doldursun */
+  background: #fff;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  display: block;         /* Alt boşluk sorununu kaldırır */
+  display: block;
 }
 
-
 .grid-item p {
-  margin-top: 10px;
+  margin-top: 15px;
   font-weight: 500;
   font-size: 1rem;
   letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .grid-item:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
   color: #999;
 }
 
-/* Masaüstü için */
+/* --- RESPONSIVE (DUYARLI) TASARIM --- */
+
+/* Masaüstü Düzenlemeleri */
 @media screen and (min-width: 992px) {
   .logo-header {
-    margin-bottom: -5rem; /* Menü altındaki boşluk azaltıldı */
+    margin-bottom: -5rem;
   }
-
-  .wrapper {
-    margin-top: 0;
-  }
-
   .grid-container {
     gap: 2rem;
-    padding-top: 1rem;
   }
 }
 
-/* Tablet için */
-@media screen and (min-width: 576px) and (max-width: 768px)  {
-  .logo-header {
-    margin-bottom: 1rem;
-  }
-
-  .wrapper {
-    margin-top: 0;
-  }
-
-  .grid-container {
-    gap: 2rem;
-    padding-top: 1rem;
-  }
-}
-
-/* Mobil için */
+/* Mobil ve Tablet için Düzenlenmiş Bölüm */
 @media (max-width: 900px) {
+  .wrapper {
+    padding: 2rem 1rem; /* Üst ve alt boşluğu biraz daralttık */
+  }
+
   .grid-container {
-    flex-direction: column;
+    flex-direction: column; /* Kartlar alt alta */
     align-items: center;
-    gap: 30px;
+    gap: 20px; /* Kartlar arasındaki boşluğu azalttık */
   }
 
   .grid-item {
-    width: 90%;
-    max-width: 320px;
+    /* Buradaki genişlik mobildeki kart boyutunu belirler */
+    width: 220px;   /* Eskiden 320px civarıydı, şimdi daha küçük */
+    max-width: 80%; 
+  }
+
+  .grid-item p {
+    font-size: 0.9rem; /* Yazı boyutunu hafif küçülttük */
+    margin-top: 8px;
+  }
+  
+  .grid-item img {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Gölgeyi de küçülttük ki kaba durmasın */
   }
 }

@@ -62,10 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Meta satırlarını hazırla
   const FIELD_MAP = [
-    ["Konum",     "konum"],
-    ["Kategori",  "kategori"],
-    ["Tasarımcı", "tasarimci"],
-    ["Durum",     "durum"],
+    ["Ölçüler",     "olculer"],
+    ["Malzemeler",  "malzeme"],
   ];
 
   let rows = "";

@@ -65,28 +65,42 @@ a:hover {
 
 /* Logolu başlık ve menü */
 .logo-header {
-  padding: 1.5rem 0;
+  padding: 0.5rem 0; /* Üst/Alt padding iyice azaltıldı */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.3rem;
+  /* gap değeri 0.3rem'den 0'a çekilerek logoyla menü ikonunun yapışması sağlandı */
+  gap: 0; 
   text-align: center;
   position: static;
-  margin-top: 10px;
+  margin-top: 5px; /* Sayfanın en tepesindeki boşluk */
 }
 
 .header-logo {
-  width: 140px;
-  max-width: 100%;
+  /* Genişliği 140px'den 300px'e çıkarıyoruz (Yaklaşık 2 kat daha büyük) */
+  width: 600px; 
+  max-width: 90%; /* Mobilde ekrandan taşmaması için güvenli sınır */
   height: auto;
-  margin-top: -1.5rem;
+  
+  /* Negatif margin ile logonun kapladığı sanal alanı daraltıp menüyü yaklaştırıyoruz */
+  margin-top: -1rem;
+  margin-bottom: -8rem; /* Menüyü yukarı çeken kritik değer */
+  
+  transition: transform 0.3s ease;
 }
 
 .logo {
-  width: 140px;
-  max-width: 100%;
+  width: 100%; /* header-logo kapsayıcısının genişliğini tam kullansın */
   height: auto;
   display: block;
+}
+
+/* Mobilde biraz daha derli toplu durması için */
+@media (max-width: 600px) {
+  .header-logo {
+    width: 240px; /* Mobilde de büyük, ama ekrana sığacak şekilde */
+    margin-bottom: -0.8rem;
+  }
 }
 
 /* Menü ikonu ve dropdown */
